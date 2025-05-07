@@ -21,11 +21,12 @@ const Sidebar = ({ open, onClose }) => {
       </span>
 
       <div className={`mx-[80px] mt-[50px] flex items-center`}>
-        <div className="mt-1 ml-1 h-2.5 font-poppins text-[25px] font-bold uppercase text-navy-700 dark:text-white">
-          Ecobin <span class="font-medium">Sol</span>
-        </div>
+        <div className="mt-1 ml-1 text-c-green-300 dark:text-white font-chivo">
+          <h1 className="text-4xl font-bold leading-none">Ecobin</h1>
+          <p className="text-c-green-900 text-md font-thin tracking-widest">Solution</p>
+          </div>
       </div>
-      <div class="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
+      <div class="mt-14 mb-7 h-px bg-gray-300 dark:bg-white/30" />
       {/* Nav item */}
 
       <ul className="mb-auto pt-1">

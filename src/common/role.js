@@ -1,6 +1,6 @@
 const ROLE = {
     GENERAL : "GENERAL",
-    COLLECTOR : "COLLECTOR",
+    // COLLECTOR : "COLLECTOR",
     ADMIN : "ADMIN",
     
 }

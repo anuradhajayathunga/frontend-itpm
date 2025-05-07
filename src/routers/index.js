@@ -16,6 +16,11 @@ import AdminCollectorTable from "../components/admin/collector/AdminCollectorTab
 import Store from "../pages/Store";
 import Collector from "../pages/Collector";
 import Users from "../components/admin/user/Users";
+import Email from "../components/admin/email/email";
+import FeedbackForm from "../pages/FeedbackForm";
+import Feedback from "../components/admin/feedback/feedback";
+import LocateBin from "../pages/LocateBin";
+import Aboutus from "../pages/Aboutus";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +54,19 @@ const router = createBrowserRouter([
         path: "store",
         element: <Store />,
       },
+      {
+        path: "locatebin",
+        element: <LocateBin />,
+      },
+      {
+        path: "aboutus",
+        element: <Aboutus />,
+      },
+
+      {
+        path: "feedback/",
+        element: <FeedbackForm />,
+      },
 
       // admin panel
       {
@@ -78,6 +96,14 @@ const router = createBrowserRouter([
           {
             path: "collector",
             element: <AdminCollectorTable />,
+          },
+          {
+            path: "email",
+            element: <Email />,
+          },
+          {
+            path: "feedbacks",
+            element: <Feedback />,
           },
         ],
       },
