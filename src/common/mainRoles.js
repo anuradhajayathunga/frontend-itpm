@@ -1,6 +1,6 @@
 const MROLE = {
     GENERAL : "GENERAL",
-    COLLECTOR : "COLLECTOR",
+    // COLLECTOR : "COLLECTOR",
     ADMIN : "ADMIN",
     
 }

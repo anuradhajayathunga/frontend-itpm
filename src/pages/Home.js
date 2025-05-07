@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"; // For navigation between pages
+import { Link as ScrollLink } from "react-scroll"; // For smooth scrolling
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -11,34 +11,35 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-
-
-
 const services = [
   {
     title: "Convenient & Hassle-Free",
-    description:"ECOBIN smart bins simplify waste disposal with real-time alerts and optimized routes, saving users and operators time and effort.",
+    description:
+      "ECOBIN smart bins simplify waste disposal with real-time alerts and optimized routes, saving users and operators time and effort.",
     icon: "assets/images/icons/icon-flower.svg",
     bgIcon: "assets/images/icons/icon-flower-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Earn from Your Waste",
-    description:"ECOBIN rewards users for recycling by turning waste into valuable resources for the community, by offering incentives such as discounts, points or cash back.",
+    description:
+      "ECOBIN rewards users for recycling by turning waste into valuable resources for the community, by offering incentives such as discounts, points or cash back.",
     icon: "assets/images/icons/icon-map.svg",
     bgIcon: "assets/images/icons/icon-map-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Eco-Friendly Impact",
-    description:"Reduces landfill waste, promotes recycling and reduces carbon emissions, helping to create a cleaner, greener and more sustainable environment for future generations.",
+    description:
+      "Reduces landfill waste, promotes recycling and reduces carbon emissions, helping to create a cleaner, greener and more sustainable environment for future generations.",
     icon: "assets/images/icons/icon-pine.svg",
     bgIcon: "assets/images/icons/icon-pine-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Trusted by Thousands",
-    description:"ECOBIN is a proven solution adopted by municipalities, businesses and residents around the world, ensuring reliability, transparency and measurable environmental benefits.",
+    description:
+      "ECOBIN is a proven solution adopted by municipalities, businesses and residents around the world, ensuring reliability, transparency and measurable environmental benefits.",
     icon: "assets/images/icons/icon-pine.svg",
     bgIcon: "assets/images/icons/icon-pine-white.svg",
     bgColor: "bg-c-green-300/60",
@@ -56,9 +57,7 @@ const features = [
     title: "Introducing New Features",
     icon: "/assets/number-3_9507588.png",
   },
-  { title: "Dynamic Boosting",
-    icon: "/assets/number-4_9507599.png" 
-  },
+  { title: "Dynamic Boosting", icon: "/assets/number-4_9507599.png" },
 ];
 
 // ...
@@ -128,7 +127,7 @@ const Home = () => {
             <div className="flex items-center justify-start">
               <button type="button">
                 <Link
-                  to="/"
+                  to="/locatebin"
                   className="flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] bg-c-green-300 text-white hover:bg-gray-100 hover:text-gray-900 text-heading-6 tracking-wide mr-[22px] hover:translate-y-[-2px]"
                 >
                   <span className="block text-inherit w-full h-full rounded-[50px] text-lg font-chivo font-semibold">
@@ -144,9 +143,12 @@ const Home = () => {
                   </div>
                 </Link>
               </button>
-              <Link
-                to="/"
-                className="text-base flex items-center font-chivo font-bold text-[18px] leading-[18px] gap-[5px]"
+              <ScrollLink
+                to="why-choose"
+                smooth={true}
+                duration={500}
+                className="text-base flex items-center font-chivo font-bold
+                text-[18px] leading-[18px] gap-[5px] cursor-pointer "
               >
                 See More
                 <img
@@ -154,7 +156,7 @@ const Home = () => {
                   src="assets/images/icons/icon-right.svg"
                   alt="arrow right icon"
                 />
-              </Link>
+              </ScrollLink>
             </div>
           </div>
 
@@ -214,13 +216,13 @@ const Home = () => {
         )}
       </div>
       {/* why choose ecobin */}
-      <div className="px-3 md:px-9 xl:px-0 mt-16 lg:mt-24 ">
+      <div id="why-choose" className="px-3 md:px-9 xl:px-0 mt-16 lg:mt-24 ">
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="font-bold font-chivo mx-auto text-3xl leading-[44px] md:text-4xl md:leading-[52px] lg:text-5xl text-gray-900 mb-6 max-w-2xl">
             Why Choose ECOBIN?{" "}
           </h2>
-          <p className="text-lg text-gray-600 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-700 mx-auto max-w-3xl">
             At ECOBIN, we’re more than just a recycling platform. we’re your
             partner in creating a sustainable future.
           </p>
@@ -228,7 +230,9 @@ const Home = () => {
 
         {/* Service Cards */}
         <div className="max-w-[1320px] mx-auto relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">            {services.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {" "}
+            {services.map((service, index) => (
               <div
                 key={index}
                 className={`rounded-2xl p-8 md:py-14 md:px-12 relative mb-5 flex flex-col justify-between transition-all duration-300 ${service.bgColor} hover:-translate-y-1`}
@@ -242,7 +246,9 @@ const Home = () => {
                   <h2 className="font-bold text-dark font-chivo text-2xl md:text-3xl mb-8">
                     {service.title}
                   </h2>
-                  <p className="font-medium text-gray-600 mb-8">{service.description}</p>
+                  <p className="font-medium text-white mb-8">
+                    {service.description}
+                  </p>
                 </div>
                 <Link
                   to="/"

@@ -2,7 +2,7 @@ import React from "react";
 
 // Admin Imports
 import MainDashboard from "./views/admin/default";
-import NFTMarketplace from "./views/admin/marketplace";
+// import NFTMarketplace from "./views/admin/marketplace";
 import Profile from "./views/admin/profile";
 import DataTables from "./views/admin/tables";
 // import RTLDefault from "views/rtl/default";
@@ -13,16 +13,18 @@ import DataTables from "./views/admin/tables";
 // Icon Imports
 import {
   MdHome,
-  MdOutlineShoppingCart,
+  MdAlternateEmail,
   MdBarChart,
   MdPerson,
-  MdLock,
+  MdOutlineFeedback,
 } from "react-icons/md";
 import { SiOpencollective } from "react-icons/si";
 
 import AdminUserTable from "./components/admin/user/AdminUserTable";
 import AdminCollectorTable from "./components/admin/collector/AdminCollectorTable";
 import Users from "./components/admin/user/Users";
+import Email from "./components/admin/email/email";
+import Feedback from "./components/admin/feedback/feedback";
 
 const routes = [
   {
@@ -32,14 +34,14 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
-  {
-    name: "NFT Marketplace",
-    layout: "/admin",
-    path: "nft-marketplace",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-    component: <NFTMarketplace />,
-    secondary: true,
-  },
+  // {
+  //   name: "NFT Marketplace",
+  //   layout: "/admin",
+  //   path: "nft-marketplace",
+  //   icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+  //   component: <NFTMarketplace />,
+  //   secondary: true,
+  // },
   {
     name: "Data Tables",
     layout: "/admin",
@@ -67,6 +69,20 @@ const routes = [
     icon: <SiOpencollective className="h-6 w-6" />,
     path: "collector",
     component: <AdminCollectorTable />,
+  },
+  {
+    name: "Email",
+    layout: "/admin",
+    icon: <MdAlternateEmail className="h-6 w-6" />,
+    path: "email",
+    component: <Email />,
+  },
+  {
+    name: "Feedback",
+    layout: "/admin",
+    icon: <MdOutlineFeedback className="h-6 w-6" />,
+    path: "feedbacks",
+    component: <Feedback />,
   },
   // {
   //   name: "Sign In",

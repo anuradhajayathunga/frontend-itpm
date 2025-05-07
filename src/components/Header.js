@@ -75,7 +75,7 @@ const Header = () => {
               <li className="flex items-center group">
                 <Link
                   aria-current="page"
-                  to="#"
+                  to={"/locatebin"}
                   className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   Locate bins
@@ -95,7 +95,7 @@ const Header = () => {
               <li className="flex items-center group">
                 <Link
                   aria-current="page"
-                  to="#"
+                  to={"/aboutus"}
                   className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   About us
@@ -118,7 +118,7 @@ const Header = () => {
                       className="w-9 h-9 rounded-full mx-auto mb-3 object-cover"
                     />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-green-600 text-white flex items-center justify-center mx-auto  text-sm font-bold uppercase">
+                    <div className="w-9 h-9 rounded-full bg-c-green-300 text-white flex items-center justify-center mx-auto  text-sm font-bold uppercase">
                       {user?.name?.charAt(0) || "?"}
                     </div>
                   )}{" "}
