@@ -6,12 +6,16 @@ import ForgotPassword from "../pages/ForgotPassword";
 import Signup from "../pages/Signup";
 import BecomeACollector from "../pages/BecomeACollector";
 import Admin from "../pages/AdminPage";
-import AdminDashboard from "../pages/AdminDashboard";
-import AdminUserTable from "../pages/AdminUserTable";
-import AdminCollectorTable from "../pages/AdminCollectorTable";
+import Dashboard from "../views/admin/default/index";
+import NFTMarketplace from "../views/admin/marketplace";
+import Profile from "../views/admin/profile";
+import DataTables from "../views/admin/tables";
+
+import AdminUserTable from "../components/admin/user/AdminUserTable";
+import AdminCollectorTable from "../components/admin/collector/AdminCollectorTable";
 import Store from "../pages/Store";
-import Profile from "../pages/Profile";
 import Collector from "../pages/Collector";
+import Users from "../components/admin/user/Users";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,45 +38,50 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "profile",
-        element: <Profile/>,
-      },
-      {
         path: "become-a-collector",
         element: <BecomeACollector />,
       },
       {
         path: "collector-dashboard",
-        element: <Collector/>,
+        element: <Collector />,
       },
       {
         path: "store",
-        element: <Store/>,
+        element: <Store />,
       },
 
-
-
-            // admin panel
-            {
-              path: "admin",
-              element: <Admin />,
-              children: [
-                 {
-                   path: "dashboard",
-                   element: <AdminDashboard />,
-                 },
-                 {
-                   path: "all-user",
-                   element: <AdminUserTable />,
-                 },
-                 {
-                   path: "collector-message",
-                   element: <AdminCollectorTable/>,
-                 },
-              ],
-            },
+      // admin panel
+      {
+        path: "admin",
+        element: <Admin />,
+        children: [
+          {
+            path: "default",
+            element: <Dashboard />,
+          },
+          {
+            path: "nft-marketplace",
+            element: <NFTMarketplace />,
+          },
+          {
+            path: "data-tables",
+            element: <DataTables />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "user",
+            element: <Users />,
+          },
+          {
+            path: "collector",
+            element: <AdminCollectorTable />,
+          },
+        ],
+      },
     ],
-    
   },
 ]);
 

@@ -45,19 +45,13 @@ const Page404 = () => {
           <p className="text-sm">&copy; 2025 ©EcoBin Solution Pvt Ltd.</p>
           <ul className="flex justify-center space-x-4 mt-2">
             <li>
-              <a
-                href="/"
-                className="text-sm text-gray-700 hover:underline"
-              >
+              <a href="/" className="text-sm text-gray-700 hover:underline">
                 Privacy Policy
               </a>
             </li>
-            <li className="text-gray-500">|</li>
+            <li className="text-gray-700">|</li>
             <li>
-              <a
-                href="/"
-                className="text-sm text-gray-700 hover:underline"
-              >
+              <a href="/" className="text-sm text-gray-700 hover:underline">
                 Terms & Conditions
               </a>
             </li>
