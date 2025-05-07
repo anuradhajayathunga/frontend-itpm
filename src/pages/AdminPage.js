@@ -1,158 +1,96 @@
-import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import { Outlet, useNavigate } from "react-router-dom";
-import { MdNotifications } from "react-icons/md";
-import { useSelector } from "react-redux";
-import ROLE from "../common/role";
+import React from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import Navbar from "../components/navbar";
+import Sidebar from "../components/sidebar/index.jsx";
+import Footer from "../components/footer/Footer";
+import routes from "../routes.js";
 
-const AdminPage = () => {
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+export default function AdminPage(props) {
+  const { ...rest } = props;
+  const location = useLocation();
+  const [open, setOpen] = React.useState(true);
+  const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
-  const toggleNotifications = () =>
-    setIsNotificationsOpen(!isNotificationsOpen);
-  const toggleProfileMenu = () => setIsProfileOpen(!isProfileOpen);
+  React.useEffect(() => {
+    window.addEventListener("resize", () =>
+      window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
+    );
+  }, []);
+  React.useEffect(() => {
+    getActiveRoute(routes);
+  }, [location.pathname]);
 
-  const user = useSelector((state) => state?.user?.user);
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (user?.role !== ROLE.ADMIN) {
-      navigate("/");
+  const getActiveRoute = (routes) => {
+    let activeRoute = "Main Dashboard";
+    for (let i = 0; i < routes.length; i++) {
+      if (
+        window.location.href.indexOf(
+          routes[i].layout + "/" + routes[i].path
+        ) !== -1
+      ) {
+        setCurrentRoute(routes[i].name);
+      }
     }
-  }, [user]);
+    return activeRoute;
+  };
+  const getActiveNavbar = (routes) => {
+    let activeNavbar = false;
+    for (let i = 0; i < routes.length; i++) {
+      if (
+        window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
+      ) {
+        return routes[i].secondary;
+      }
+    }
+    return activeNavbar;
+  };
+  const getRoutes = (routes) => {
+    return routes.map((prop, key) => {
+      if (prop.layout === "/admin") {
+        return (
+          <Route path={`/${prop.path}`} element={prop.component} key={key} />
+        );
+      } else {
+        return null;
+      }
+    });
+  };
 
+  document.documentElement.dir = "ltr";
   return (
-    <div className="flex h-screen bg-gray-50 ">
-      <Sidebar />
-      <div className="flex flex-col flex-1 w-full">
-        <header className="z-10 py-4 bg-white">
-          <div className="container flex items-center justify-between h-full px-6 mx-auto text-c-green-600">
-            {/* Mobile Hamburger */}
-            <button
-              className="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
-              aria-label="Menu"
-            >
-              <svg
-                className="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </button>
+    <div className="flex h-full w-full">
+      <Sidebar open={open} onClose={() => setOpen(false)} />
+      {/* Navbar & Main Content */}
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+        {/* Main Content */}
+        <main
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+        >
+          {/* Routes */}
+          <div className="h-full">
+            <Navbar
+              onOpenSidenav={() => setOpen(true)}
+              logoText={"Horizon UI Tailwind React"}
+              brandText={currentRoute}
+              secondary={getActiveNavbar(routes)}
+              {...rest}
+            />
+            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+              <Routes>
+                {getRoutes(routes)}
 
-            {/* Search Input */}
-            <div className="flex justify-center flex-1 lg:mr-32">
-              <div className="relative w-full max-w-md">
-                <div className="absolute inset-y-0 flex items-center pl-3 pointer-events-none">
-                  <svg
-                    className="w-5 h-5 text-gray-500"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  className="w-full pl-10 pr-4 py-2 text-md text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-c-green-900 focus:ring-1 focus:ring-c-green-900 transition-shadow duration-200"
-                  type="text"
-                  placeholder="Search for projects..."
+                <Route
+                  path="/"
+                  element={<Navigate to="/admin/default" replace />}
                 />
-              </div>
+              </Routes>
             </div>
-
-            {/* Icons & Menus */}
-            <ul className="flex items-center space-x-3">
-              {/* Theme Toggle */}
-              <li>
-                <button
-                  className="rounded-md p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-c-green-900 transition-all duration-200"
-                  aria-label="Toggle color mode"
-                >
-                  <svg
-                    className="w-7 h-7 text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                  </svg>
-                </button>
-              </li>
-
-              {/* Notifications */}
-              <li className="relative">
-                <button
-                  onClick={toggleNotifications}
-                  className="relative rounded-md p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-c-green-900 transition-all duration-200"
-                  aria-label="Notifications"
-                >
-                  <MdNotifications className="w-7 h-7 text-gray-600 hover:text-gray-800 transition-colors duration-200" />
-                  {/* <svg
-                    className="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6z"></path>
-                  </svg> */}
-
-                  <span className="absolute top-0 right-0 inline-block w-3 h-3 transform -translate-x-2 translate-y-1 bg-c-green-600 rounded-full"></span>
-                </button>
-                {isNotificationsOpen && (
-                  <ul className="absolute right-0 w-56 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
-                    <li className="px-4 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-100">
-                      No new notifications
-                    </li>
-                  </ul>
-                )}
-              </li>
-
-              {/* Profile Menu */}
-              <li className="relative">
-                <button
-                  onClick={toggleProfileMenu}
-                  className="rounded-full focus:outline-none focus:ring-2 focus:ring-c-green-900 transition-all duration-200"
-                  aria-label="Account"
-                >
-                  <img
-                    className="w-10 h-10 rounded-full object-cover border-2 border-c-green-600 hover:border-c-green-900 transition-colors duration-200"
-                    src="../assets/avatars/avatar7.png"
-                    alt="User avatar"
-                  />
-                </button>
-                {isProfileOpen && (
-                  <ul className="absolute right-0 w-56 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg">
-                    <li className="px-4 py-2 text-md text-gray-700 cursor-pointer hover:bg-gray-100">
-                      Profile
-                    </li>
-                    <li className="px-4 py-2 text-md text-gray-700 cursor-pointer hover:bg-gray-100">
-                      Settings
-                    </li>
-                    <li className="px-4 py-2 text-md text-red-600 cursor-pointer hover:bg-gray-100">
-                      Log out
-                    </li>
-                  </ul>
-                )}
-              </li>
-            </ul>
-          </div>
-        </header>
-        <main className="h-full ">
-          <div className="container px-10 pt-10 mx-auto grid">
-            <Outlet />
+            <div className="p-3">
+              <Footer />
+            </div>
           </div>
         </main>
       </div>
     </div>
   );
-};
-
-export default AdminPage;
+}

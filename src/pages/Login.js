@@ -72,7 +72,7 @@ const Login = () => {
               </h2>
               <button type="button">
                 <Link
-                  className="flex items-center z-10 relative transition-all duration-200 group py-[13px] md:px-[120px] px-[80px] rounded-md bg-white text-gray-500 hover:text-gray-900 flex-row-reverse w-fit mb-[30px]"
+                  className="flex items-center z-10 relative transition-all duration-200 group py-[13px] md:px-[120px] px-[80px] rounded-md bg-white text-gray-700 hover:text-gray-900 flex-row-reverse w-fit mb-[30px]"
                   to={"#"}
                 >
                   <span className="block text-inherit w-full h-full rounded-md text-md font-chivo font-semibold">
@@ -87,7 +87,7 @@ const Login = () => {
               </button>
               <div className="flex items-center justify-center gap-[7px] mb-[25px]">
                 <div className="bg-gray-300 w-[50px] h-[2px]"></div>
-                <p className="text-text text-gray-500">
+                <p className="text-text text-gray-700">
                   Or, sign in with your email
                 </p>
                 <div className="bg-gray-300 w-[50px] h-[2px]"></div>
@@ -128,7 +128,7 @@ const Login = () => {
                   </span>
                   <button
                     type="button"
-                    className="absolute top-1/2 right-[12px] transform -translate-y-1/2 text-gray-500 hover:text-green-900"
+                    className="absolute top-1/2 right-[12px] transform -translate-y-1/2 text-gray-700 hover:text-green-900"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {/* {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />} */}
@@ -137,7 +137,7 @@ const Login = () => {
                 <div className="block w-fit ml-auto -mt-5 mb-5">
                   <Link
                     to="/forgot-password"
-                    className="text-sm font-bold text-gray-500 hover:underline hover:text-c-green-900"
+                    className="text-sm font-bold text-gray-700 hover:underline hover:text-c-green-900"
                   >
                     Forgot password?
                   </Link>
@@ -149,7 +149,7 @@ const Login = () => {
                   Continue
                 </button>
                 <div className="flex gap-2">
-                  <p className="text-text text-gray-500">
+                  <p className="text-text text-gray-700">
                     Don’t have an account?
                   </p>
                   <Link

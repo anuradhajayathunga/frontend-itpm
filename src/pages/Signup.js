@@ -60,7 +60,7 @@ const Signup = () => {
 
   return (
     <>
-    <Header />
+      <Header />
       <div
         id="signup"
         className="full-width bg-bg-6 px-5 text-center flex flex-col items-center justify-center pt-[100px] pb-[300px] lg:pb-[400px] bg-c-green-300/20"
@@ -72,7 +72,7 @@ const Signup = () => {
           <button type="button">
             <Link
               to="/signup"
-              className="flex items-center z-10 relative transition-all duration-200 group py-[13px] md:px-[120px] px-[50px] rounded-md bg-white text-gray-500 hover:text-gray-900 flex-row-reverse w-fit mb-[30px]"
+              className="flex items-center z-10 relative transition-all duration-200 group py-[13px] md:px-[120px] px-[50px] rounded-md bg-white text-gray-700 hover:text-gray-900 flex-row-reverse w-fit mb-[30px]"
             >
               <span className="block text-inherit w-full h-full rounded-md text-md font-chivo font-semibold">
                 Sign up with Google
@@ -86,7 +86,7 @@ const Signup = () => {
           </button>
           <div className="flex items-center justify-center gap-[7px] mb-[25px]">
             <div className="bg-gray-300 w-[50px] h-[2px]"></div>
-            <p className="text-text text-gray-500">
+            <p className="text-text text-gray-700">
               Or, sign up with your email
             </p>
             <div className="bg-gray-300 w-[50px] h-[2px]"></div>
@@ -166,7 +166,7 @@ const Signup = () => {
               className="w-5 h-5 cursor-pointer"
               required
             /> */}
-              {/* <label htmlFor="terms" className="text-sm font-bold text-gray-500">
+              {/* <label htmlFor="terms" className="text-sm font-bold text-gray-700">
               Agree to{" "}
               <Link to="/terms" className="text-green-900 hover:opacity-70">
                 terms & conditions
@@ -177,7 +177,7 @@ const Signup = () => {
               Continue
             </button>
             <div className="flex gap-2">
-              <p className="text-text text-gray-500">
+              <p className="text-text text-gray-700">
                 Already have an account?
               </p>
               <Link to="/login" className="text-c-green-900 hover:opacity-70">

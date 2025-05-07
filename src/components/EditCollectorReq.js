@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import STATUS from "../common/status"
+import STATUS from "../common/status";
 import { toast } from "react-toastify";
 import SummaryApi from "../common";
-const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
+const EditCollectorReq = ({ onClose, collecData, fetchData }) => {
   const [data, setData] = useState({ ...collecData });
 
   const handleOnChange = (e) => {
@@ -11,14 +11,14 @@ const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
-   // Handle form submission
-   const handleSubmit = async (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // If status is "Approved", update role to "Collector"
-  // if (data.status === "Approved") {
-  //   data.role = "COLLECTOR";
-  // }
+    // if (data.status === "Approved") {
+    //   data.role = "COLLECTOR";
+    // }
 
     const response = await fetch(SummaryApi.updateCollector.url, {
       method: SummaryApi.updateCollector.method,
@@ -30,12 +30,11 @@ const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
     const responseData = await response.json();
     if (responseData.success) {
       toast.success(responseData?.message);
-      onClose()
-      fetchData()
+      onClose();
+      fetchData();
     } else {
       toast.error(responseData?.message);
     }
-
   };
 
   return (
@@ -45,7 +44,7 @@ const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
         <div className="flex justify-between items-center border-b pb-3 mb-4">
           <h2 className="text-xl font-semibold">Collector's request</h2>
           <button
-            className="text-gray-500 hover:text-red-600 hover:scale-110"
+            className="text-gray-700 hover:text-red-600 hover:scale-110"
             onClick={onClose}
           >
             <IoMdClose size={24} />
@@ -63,12 +62,14 @@ const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
               className="p-2 outline-none bg-slate-100 border rounded"
             >
               {Object.values(STATUS).map((el) => (
-                <option value={el} key={el}>{el}</option>
+                <option value={el} key={el}>
+                  {el}
+                </option>
               ))}
             </select>
           </div>
 
-           {/*<div className="grid grid-cols-2 gap-4">
+          {/*<div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium">First Name</label>
 
@@ -172,9 +173,7 @@ const EditCollectorReq = ({ onClose, collecData,fetchData }) => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium">
-                Vehicle Image
-              </label>
+              <label className="block text-sm font-medium">Vehicle Image</label>
               {data.vehicle && (
                 <img
                   src={data.vehicle}
