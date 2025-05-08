@@ -448,6 +448,7 @@ const Home = () => {
           ))}
         </Swiper>
       </div>
+<<<<<<< HEAD
       <div className="fixed bottom-10 right-10 z-50">
         <Link
           to="/feedbackandcomplaint" // Replace "/feedback" with the actual route of your feedback page
@@ -456,6 +457,8 @@ const Home = () => {
           Reviews
         </Link>
       </div>
+=======
+>>>>>>> main
       <Footer />
     </div>
   );

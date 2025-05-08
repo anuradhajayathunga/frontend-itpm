@@ -10,7 +10,10 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^4.5.0",
+<<<<<<< HEAD
     "axios": "^1.9.0",
+=======
+>>>>>>> main
     "chart.js": "^4.4.8",
     "lucide-react": "^0.484.0",
     "moment": "^2.30.1",

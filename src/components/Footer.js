@@ -181,9 +181,15 @@ const Footer = () => {
                 <li className="mb-2">
                   <Link
                     className="transition-all duration-200 hover:text-c-green-300  hover:pl-[3px]"
+<<<<<<< HEAD
                     href="../pages/Feedback&Complaint.js"
                   >
                     Feedback & Complaints
+=======
+                    href="#"
+                  >
+                    Live Chatting
+>>>>>>> main
                   </Link>
                 </li>
                 <li className="mb-2">

@@ -12,11 +12,14 @@ import AdminCollectorTable from "../pages/AdminCollectorTable";
 import Store from "../pages/Store";
 import Profile from "../pages/Profile";
 import Collector from "../pages/Collector";
+<<<<<<< HEAD
 import FeedbackForm from "../pages/FeedbackForm";
 import ComplaintForm from "../pages/ComplaintForm";
 import ReviewDashboard from "../pages/ReviewDashboard";
 import FeedbackandComplaint from "../pages/FeedbackandComplaint";
 
+=======
+>>>>>>> main
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +57,7 @@ const router = createBrowserRouter([
         path: "store",
         element: <Store/>,
       },
+<<<<<<< HEAD
       {
         path: "feedbackandcomplaint",
         element: <FeedbackandComplaint/>,
@@ -67,6 +71,9 @@ const router = createBrowserRouter([
         element: <ComplaintForm/>,
       },
       
+=======
+
+>>>>>>> main
 
 
             // admin panel
@@ -86,10 +93,13 @@ const router = createBrowserRouter([
                    path: "collector-message",
                    element: <AdminCollectorTable/>,
                  },
+<<<<<<< HEAD
                  {
                   path: "review-dashboard",
                   element: <ReviewDashboard/>,
                 },
+=======
+>>>>>>> main
               ],
             },
     ],
