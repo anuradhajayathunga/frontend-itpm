@@ -10,6 +10,7 @@ import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -26,6 +27,12 @@ const UserTableWithReactTable = () => {
     _id: "",
   });
   const [sorting, setSorting] = useState([]);
+
+  // Pagination state
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 7, // default 5 rows per page
+  });
 
   // Fetch all users data from the API
   const fetchAllUsers = async () => {
@@ -71,7 +78,7 @@ const UserTableWithReactTable = () => {
               <p className="font-semibold capitalize text-navy-700 dark:text-white">
                 {info.getValue()}
               </p>
-              <p className="text-[10px] text-gray-600">{userData.role}</p>
+              <p className="text-[10px] text-green-600">{userData.role}</p>
             </div>
           </div>
         );
@@ -81,17 +88,6 @@ const UserTableWithReactTable = () => {
       id: "email",
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">EMAIL</p>
-      ),
-      cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
-        </p>
-      ),
-    }),
-    columnHelper.accessor("role", {
-      id: "role",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">ROLE</p>
       ),
       cell: (info) => (
         <p className="text-sm font-bold text-navy-700 dark:text-white">
@@ -122,7 +118,7 @@ const UserTableWithReactTable = () => {
       cell: (info) => {
         const userData = info.row.original;
         return (
-          <div className="flex items-center space-x-4 text-sm">
+          <Card className="flex items-center space-x-4 text-sm">
             <button
               className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-c-green-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
               aria-label="Edit"
@@ -137,7 +133,7 @@ const UserTableWithReactTable = () => {
                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
               </svg>
             </button>
-          </div>
+          </Card>
         );
       },
     }),
@@ -149,10 +145,13 @@ const UserTableWithReactTable = () => {
     columns,
     state: {
       sorting,
+      pagination,
     },
     onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
   });
 
@@ -161,7 +160,7 @@ const UserTableWithReactTable = () => {
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
         <div className="relative flex items-center justify-between pt-4">
           <div className="text-xl font-bold text-navy-700 dark:text-white">
-            User
+            Users
           </div>
           <CardMenu />
         </div>
@@ -198,7 +197,7 @@ const UserTableWithReactTable = () => {
                 </tr>
               ))}
             </thead>
-            <tbody className="bg-white divide-y">
+            <tbody className=" divide-y">
               {table.getRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id} className="text-gray-700">
@@ -217,9 +216,54 @@ const UserTableWithReactTable = () => {
               })}
             </tbody>
           </table>
+
+          {/* Loading State */}
           {allUsers.length === 0 && (
             <div className="py-4 text-center text-gray-600">
-              Loading users data...
+              No users found or loading...
+            </div>
+          )}
+
+          {/* Pagination Controls */}
+          {allUsers.length > 8 && (
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                >
+                  Previous
+                </button>
+                <span>
+                  Page{" "}
+                  <strong>
+                    {table.getState().pagination.pageIndex + 1} of{" "}
+                    {table.getPageCount().toLocaleString()}
+                  </strong>
+                </span>
+                <button
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                >
+                  Next
+                </button>
+              </div>
+
+              {/* <select
+                value={table.getState().pagination.pageSize}
+                onChange={(e) => {
+                  table.setPageSize(Number(e.target.value));
+                }}
+                className="px-2 py-1 border rounded"
+              >
+                {[5, 10, 20, 30, 50].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </select> */}
             </div>
           )}
         </div>

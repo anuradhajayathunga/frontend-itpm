@@ -20,7 +20,7 @@ import {
 } from "react-icons/md";
 import { SiOpencollective } from "react-icons/si";
 
-import AdminUserTable from "./components/admin/user/AdminUserTable";
+// import AdminUserTable from "./components/admin/user/AdminUserTable";
 import AdminCollectorTable from "./components/admin/collector/AdminCollectorTable";
 import Users from "./components/admin/user/Users";
 import Email from "./components/admin/email/email";
@@ -42,13 +42,13 @@ const routes = [
   //   component: <NFTMarketplace />,
   //   secondary: true,
   // },
-  {
-    name: "Data Tables",
-    layout: "/admin",
-    icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <DataTables />,
-  },
+  // {
+  //   name: "Data Tables",
+  //   layout: "/admin",
+  //   icon: <MdBarChart className="h-6 w-6" />,
+  //   path: "data-tables",
+  //   component: <DataTables />,
+  // },
   {
     name: "Profile",
     layout: "/admin",

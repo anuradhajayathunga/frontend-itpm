@@ -17,27 +17,27 @@ const SummaryApi = {
     url: `${backendDomin}/api/user-logout`,
     method: "get",
   },
-  AllUsers:{
+  AllUsers: {
     url: `${backendDomin}/api/all-user-details`,
     method: "get",
   },
-  updateUser:{
+  updateUser: {
     url: `${backendDomin}/api/update-user-role`,
     method: "post",
   },
 
   //collector
-  collectorForm:{
+  collectorForm: {
     url: `${backendDomin}/api/collector-form`,
     method: "post",
   },
-  allCollector:{
+  allCollector: {
     url: `${backendDomin}/api/get-collector`,
-    method: "get"
+    method: "get",
   },
-  updateCollector:{
+  updateCollector: {
     url: `${backendDomin}/api/update-collector`,
-    method: "post"
+    method: "post",
   },
 
   // email
@@ -62,6 +62,36 @@ const SummaryApi = {
     method: "post",
   },
 
+  // Waste Collection
+  send_waste: {
+    url: `${backendDomin}/api/send-waste`,
+    method: "post",
+  },
+  get_all_waste: {
+    url: `${backendDomin}/api/get-allwaste`,
+    method: "get",
+  },
+  get_user_waste: {
+    url: `${backendDomin}/api/get-userwaste`,
+    method: "get",
+  },
+  get_single_waste: (id) => ({
+    url: `${backendDomin}/api/get-wastcollec/${id}`,
+    method: "get",
+  }),
+  update_waste: (id) => ({
+    url: `${backendDomin}/api/update-waste/${id}`,
+    method: "put",
+  }),
+  update_waste_status: (id) => ({
+    url: `${backendDomin}/api/update-waste-state/${id}/status`,
+    method: "put",
+  }),
+  delete_waste: (id) => ({
+    url: `${backendDomin}/api/delete-wastereq/${id}`,
+    method: "delete",
+  }),
+
   //feedback
   send_feedback: {
     url: `${backendDomin}/api/add-feedback`,
@@ -71,10 +101,20 @@ const SummaryApi = {
     url: `${backendDomin}/api/get-feedback`,
     method: "get",
   },
-   delete_feedback: {
-     url: `${backendDomin}/api/delete-feedback`,
-     method: "post",
-   },
+  delete_feedback: {
+    url: `${backendDomin}/api/delete-feedback`,
+    method: "post",
+  },
+
+  // Tasks
+  assign_task: {
+    url: `${backendDomin}/api/tasks/assign`,
+    method: "post",
+  },
+  get_collector_tasks: (email) => ({
+    url: `${backendDomin}/api/tasks/${email}`,
+    method: "get",
+  }),
 };
 
 export default SummaryApi;

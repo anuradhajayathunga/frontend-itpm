@@ -22,8 +22,8 @@ const Sidebar = ({ open, onClose }) => {
 
       <div className={`mx-[80px] mt-[50px] flex items-center`}>
         <div className="mt-1 ml-1 text-c-green-300 dark:text-white font-chivo">
-          <h1 className="text-4xl font-bold leading-none">Ecobin</h1>
-          <p className="text-c-green-900 text-md font-thin tracking-widest">Solution</p>
+          <h1 className="text-4xl font-bold leading-none ">ECOBIN</h1>
+          <p className="text-c-green-900 text-2xl font-extralight tracking-widest dark:text-white">SOLUTION</p>
           </div>
       </div>
       <div class="mt-14 mb-7 h-px bg-gray-300 dark:bg-white/30" />
