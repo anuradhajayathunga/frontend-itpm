@@ -81,7 +81,7 @@ const Header = () => {
                   Locate bins
                 </Link>
               </li>
-              {user?.role !== "COLLECTOR" && (
+              {user?.role !== "COLLECTOR" ? (
                 <li className="flex items-center group">
                   <Link
                     to="/become-a-collector"
@@ -91,7 +91,18 @@ const Header = () => {
                     Become a collector
                   </Link>
                 </li>
+              ) : (
+                <li className="flex items-center group">
+                  <Link
+                    to="/collector-dashboard"
+                    aria-current="page"
+                    className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
+                  >
+                    Collector
+                  </Link>
+                </li>
               )}
+
               <li className="flex items-center group">
                 <Link
                   aria-current="page"

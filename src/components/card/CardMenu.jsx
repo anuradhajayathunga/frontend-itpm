@@ -5,6 +5,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { AiOutlineShop } from "react-icons/ai";
 import { TiLightbulb } from "react-icons/ti";
+import { MdDownload } from "react-icons/md";
 
 function CardMenu(props) {
   const { transparent } = props;
@@ -40,7 +41,7 @@ function CardMenu(props) {
             </span>
             Panel 2
           </p>
-          <p className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
+          {/* <p className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
             <span>
               <TiLightbulb />
             </span>
@@ -51,6 +52,12 @@ function CardMenu(props) {
               <FiSettings />
             </span>
             Panel 4
+          </p> */}
+          <p className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
+            <span>
+              <MdDownload />
+            </span>
+            Download
           </p>
         </div>
       }

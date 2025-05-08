@@ -12,189 +12,159 @@ import SummaryApi from "../common";
 
 const LocateBin = () => {
   const user = useSelector((state) => state?.user?.user);
+
   const [data, setData] = useState({
     fname: "",
     lname: "",
     email: "",
     phone: "",
-    location: "",
-    workarea: "",
-    fnic: "",
-    bnic: "",
-    reginumber: "",
-    chassisnumber: "",
-    vehicle: "",
+    address: "",
+    city: "",
+    date: "",
+    time: "",
+    wasteType: [],
   });
 
-  const [frontfile, frontSetFile] = useState(null);
-  const [backfile, backSetFile] = useState(null);
-  const [vehiclefile, vehicleSetFile] = useState(null);
+  const wasteTypes = ["Plastic", "Organic", "Electronic", "Glass", "Other"];
 
   // Populate form data from Redux user state on mount
   useEffect(() => {
     if (user) {
-      setData({
+      setData((prev) => ({
+        ...prev,
         fname: user.name || "",
-        lname: user.lname || "",
         email: user.email || "",
         phone: user.phone || "",
-        location: user.location || "",
-        workarea: user.workarea || "",
-        fnic: user.fnic || "",
-        bnic: user.bnic || "",
-        reginumber: user.reginumber || "",
-        chassisnumber: user.chassisnumber || "",
-        vehicle: user.vehicle || "",
-      });
-      frontSetFile(user.fnic || null);
-      backSetFile(user.bnic || null);
-      vehicleSetFile(user.vehicle || null);
+      }));
     }
   }, [user]);
 
-  // Upload functions (No Base64 Conversion)
-  const fhandleUpNIC = async (e) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) return;
-
-    try {
-      const uploadFNIC = await uploadImage(selectedFile);
-      if (!uploadFNIC?.url) {
-        console.error("Image upload failed.");
-        return;
-      }
-      console.log("Uploaded Image URL:", uploadFNIC.url);
-
-      frontSetFile(uploadFNIC.url); // Display uploaded image
-      setData((prev) => ({ ...prev, fnic: uploadFNIC.url }));
-    } catch (error) {
-      console.error("Error processing image:", error);
-    }
-  };
-
-  const bhandleUpNIC = async (e) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) return;
-
-    try {
-      const uploadBNIC = await uploadImage(selectedFile);
-      if (!uploadBNIC?.url) {
-        console.error("Image upload failed.");
-        return;
-      }
-      console.log("Uploaded Image URL:", uploadBNIC.url);
-
-      backSetFile(uploadBNIC.url);
-      setData((prev) => ({ ...prev, bnic: uploadBNIC.url }));
-    } catch (error) {
-      console.error("Error processing image:", error);
-    }
-  };
-
-  const vhandleUpVehicle = async (e) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) return;
-
-    try {
-      const uploadVehicle = await uploadImage(selectedFile);
-      if (!uploadVehicle?.url) {
-        console.error("Image upload failed.");
-        return;
-      }
-      console.log("Uploaded Image URL:", uploadVehicle.url);
-
-      vehicleSetFile(uploadVehicle.url);
-      setData((prev) => ({ ...prev, vehicle: uploadVehicle.url }));
-    } catch (error) {
-      console.error("Error processing image:", error);
-    }
-  };
-
-  // Delete images
-  const deleteBackImg = () => {
-    backSetFile(null);
-    setData((prev) => ({ ...prev, bnic: "" }));
-  };
-
-  const deleteFrontImg = () => {
-    frontSetFile(null);
-    setData((prev) => ({ ...prev, fnic: "" }));
-  };
-
-  const deleteVehicleImg = () => {
-    vehicleSetFile(null);
-    setData((prev) => ({ ...prev, vehicle: "" }));
-  };
-
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedArea, setSelectedArea] = useState("");
-
-  // Find the selected city object
-  const city = cityList.find((c) => c.value === selectedCity);
-
   // Handle text field changes
   const handleOneChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "phone" && !/^\d{0,10}$/.test(value)) return; // Restrict to 10 digits
+    const { name, value, type, checked } = e.target;
 
-    setData({ ...data, [name]: value });
+    if (type === "checkbox") {
+      setData((prev) => ({
+        ...prev,
+        wasteType: checked
+          ? [...prev.wasteType, value]
+          : prev.wasteType.filter((item) => item !== value),
+      }));
+    } else if (name === "phone" && !/^\d{0,10}$/.test(value)) {
+      return; // Restrict to 10 digits
+    } else {
+      setData({ ...data, [name]: value });
+    }
   };
 
-  // Handle city selection change
-  const handleCityChange = (e) => {
-    const cityValue = e.target.value;
-    setSelectedCity(cityValue);
-    setSelectedArea(""); // Reset area when city changes
-    setData((prevData) => ({
-      ...prevData,
-      location: cityValue, // Store selected city in data.location
-      workarea: "", // Reset workarea
-    }));
-  };
+  // Validation
+  const validate = () => {
+    const { fname, lname, email, phone, address, city, date, time, wasteType } =
+      data;
 
-  // Handle area selection change
-  const handleAreaChange = (e) => {
-    const areaValue = e.target.value;
-    setSelectedArea(areaValue);
-    setData((prevData) => ({
-      ...prevData,
-      workarea: areaValue, // Store selected area in data.workarea
-    }));
-  };
+    if (
+      !fname ||
+      !email ||
+      !city ||
+      !address ||
+      !phone ||
+      !date ||
+      !time ||
+      wasteType.length === 0
+    ) {
+      toast.error("Please fill all required fields.");
+      return false;
+    }
 
-  // Handle form submission
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return false;
+    }
+
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    if (selectedDate < currentDate) {
+      toast.error("Please select a date from today onwards.");
+      return false;
+    }
+
+    const [hours, minutes] = time.split(":").map(Number);
+    const timeInMinutes = hours * 60 + minutes;
+    const startTime = 9 * 60;
+    const endTime = 17 * 60;
+    if (timeInMinutes < startTime || timeInMinutes > endTime) {
+      toast.error("Please select a time between 9 AM and 5 PM.");
+      return false;
+    }
+
+    return true;
+  };
+  // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!data.location || !data.workarea) {
-      toast.error("Please select both a city and an area.");
-      return;
-    }
-    if (data.phone.length !== 10) {
-      toast.error("Phone number must be exactly 10 digits.");
-      return;
-    }
-    if (!frontfile || !backfile || !vehiclefile) {
-      toast.error("Please upload all required images.");
-      return;
-    }
+    if (!validate()) return;
 
-    const response = await fetch(SummaryApi.collectorForm.url, {
-      method: SummaryApi.collectorForm.method,
-      credentials: "include",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    try {
+      // Combine date and time into ISO format
+      const scheduledAt = new Date(`${data.date}T${data.time}`);
 
-    const responseData = await response.json();
-    if (responseData.success) {
-      toast.success(responseData?.message);
-      setTimeout(() => {
-        window.location.reload(); // ✅ Auto refresh after successful form submission
-      }, 1500);
-    } else {
-      toast.error(responseData?.message);
+      const payload = {
+        ...data,
+        scheduledAt,
+      };
+
+      // Optional: Remove date & time keys if backend doesn't expect them separately
+      delete payload.date;
+      delete payload.time;
+
+      const response = await fetch(SummaryApi.send_waste.url, {
+        method: SummaryApi.send_waste.method,
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        toast.success(responseData.message);
+        // setTimeout(() => window.location.reload(), 1500);
+      } else {
+        toast.error(responseData.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Submission failed: " + error.message);
     }
   };
+
+  // useEffect(() => {
+  //   const loadMap = () => {
+  //     const script = document.createElement("script");
+  //     script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+  //     script.async = true;
+  //     script.defer = true;
+  //     script.onload = initMap;
+  //     document.head.appendChild(script);
+  //   };
+
+  //   const initMap = () => {
+  //     const map = new window.google.maps.Map(document.getElementById("map"), {
+  //       center: { lat: -34.397, lng: 150.644 },
+  //       zoom: 8,
+  //     });
+
+  //     new window.google.maps.Marker({
+  //       position: { lat: -34.397, lng: 150.644 },
+  //       map,
+  //       title: "EcoBin Location",
+  //     });
+  //   };
+
+  //   loadMap();
+  // }, []);
   return (
     <div>
       <Header />
@@ -205,64 +175,72 @@ const LocateBin = () => {
         >
           <div>
             <div className="full-width bg-bg-2">
-              <div className="text-center px-5 pt-[74px] pb-[10px]">
-                <h2 className="font-bold font-chivo mx-auto text-[35px] leading-[44px] md:text-[46px] md:leading-[52px] lg:text-[55px] text-gray-900 mb-5 md:mb-[30px] max-w-[725px]">
-                  Join Us
+              <div className="text-center px-5 pt-[30px] pb-[10px]">
+                <h2 className="font-bold font-chivo mx-auto text-[35px] leading-[44px] md:text-[46px] md:leading-[52px] lg:text-[55px] text-green-500 mb-5 md:mb-[30px] max-w-[1500px]">
+                  Find Your Nearest Bin
                 </h2>
-                <p className="text-gray-600 text-center mx-auto mb-[10px] md:w-[55ch]">
-                  Earn money while helping the environment. Become a collector
-                  and be part of a sustainable future!
+                <p className="text-gray-800 text-center mx-auto mb-[10px] md:w-[55ch]">
+                  Locate your closest collection point with just a few clicks.
+                  Our interactive map helps you find bins that accept your
+                  specific items, making recycling convenient and efficient.
                 </p>
               </div>
             </div>
             <div className="bg-gray-100 relative p-[40px] md:pt-[91px] md:pr-[98px] md:pb-[86px] md:pl-[92px] mt-[10px] rounded-[58px]">
               <div className="mx-auto relative max-w-[1320px]">
                 <img
-                  className="absolute right-0 max-w-[129px] top-[-50px]"
+                  className="absolute right-[-20px] max-w-[129px] top-[-150px]"
                   src="assets/images/mail.png"
                   alt=""
                 />
-                <p className="text-capitalized text-gray-700 uppercase tracking-[2px] mb-[15px]">
-                  Join us
+                {/* <p className="text-capitalized text-gray-700 uppercase tracking-[2px] mb-[15px]">
+                  Quickly Locate the Right Bin Near You.
                 </p>
-                <h2 className="font-bold font-chivo text-[25px] leading-[30px] md:text-heading-3 mb-[22px]">
-                  Have an idea to earn income?
-                </h2>
+                <h2 className="font-bold font-chivo text-[20px] leading-[30px] md:text-heading-3 mb-[22px]">
+                  Easily discover the nearest recycling collection points
+                  tailored to your needs.
+                </h2> */}
                 <p className="text-text text-gray-600 mb-[30px] md:mb-[60px]">
                   {/* Earn money while helping the environment. Become a collector and
                 be part of a sustainable future! */}
                 </p>
-                <div className="flex flex-col gap-8 mb-[15px] md:mb-[25px] lg:flex-row lg:gap-[50px] xl:gap-[98px]">
-                  <div>
-                    <div className="flex gap-[13px] mb-[15px] md:mb-[25px]">
-                      <i>
-                        <img
-                          src="assets/images/icons/icon-home-fill.svg"
-                          alt="home icon"
-                        />
-                      </i>
-                      <p className="text-heading-6 font-bold font-chivo">
-                        EcoBin Solution
-                      </p>
+                <div className="flex flex-col gap-8 mb-[15px] md:mb-[25px] lg:flex-row lg:gap-[50px] xl:gap-[2px]">
+                  {/* Left Side - Google Map */}
+                  <div className="lg:w-1/3 w-full rounded-xl p-6">
+                    <h3 className="font-semibold text-lg mb-4">Find Us Here</h3>
+                    <div className="responsive-map mb-4">
+                      {/* <iframe
+      src="https://maps.google.com/maps?q=123%20Green%20Street,%20EcoCity&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      title="EcoBin Location"
+      frameBorder="0"
+      marginHeight="0"
+      marginWidth="0"
+    ></iframe> */}
+                      <img
+            className="h-auto w-full object-cover"
+            src="/assets/hero_geocoding_api_720 1.png"
+            alt="Agon"
+            width={600}
+            height={400}
+          />
                     </div>
-                    <p className="text-text text-gray-600">
-                      123 Green Street, EcoCity, Earth.
+
+                    <p className="text-gray-700 mb-2">
+                      123 Green Street, EcoCity, Earth
                     </p>
-                    <p className="text-text text-gray-600 mb-[10px] md:mb-[16px]">
+                    <p className="text-gray-700 mb-2">
                       Manchester, Kentucky 39495
                     </p>
-                    <p className="text-text text-gray-600 underline">
+                    <p className="text-gray-700 underline mb-2">
                       +(123)-456-7890
                     </p>
-                    <p className="text-text text-gray-600 underline">
-                      info@ecobin.com
-                    </p>
+                    <p className="text-gray-700 underline">info@ecobin.com</p>
                   </div>
                   <form className="flex-1" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                       {user?._id && (
                         <input
-                          className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                          className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px] capitalize"
                           type="text"
                           name="fname"
                           value={user?.name}
@@ -273,7 +251,7 @@ const LocateBin = () => {
                       )}
 
                       <input
-                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px] capitalize"
                         type="text"
                         name="lname"
                         value={data.lname}
@@ -305,259 +283,70 @@ const LocateBin = () => {
                         required
                       />
                     </div>
-                    {/* City & Area Selection */}
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
-                      {/* City Dropdown */}
-                      <select
-                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[20px] appearance-none  text-gray-700"
-                        name="location"
-                        value={selectedCity}
-                        onChange={handleCityChange}
-                        required
-                      >
-                        <option className="text-gray-400" value="">
-                          -- Choose a City --
-                        </option>
-                        {cityList.map((c) => (
-                          <option key={c.id} value={c.value}>
-                            {c.label}
-                          </option>
+                      <input
+                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                        type="text"
+                        name="address"
+                        value={data?.address}
+                        onChange={handleOneChange}
+                        placeholder="Your address"
+                      />
+                      <input
+                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                        type="text"
+                        name="city"
+                        value={data?.city}
+                        onChange={handleOneChange}
+                        placeholder="Your Main City"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
+                      <input
+                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                        type="date"
+                        name="date"
+                        value={data?.date}
+                        onChange={handleOneChange}
+                        placeholder="Your address"
+                      />
+                      <input
+                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                        type="time"
+                        name="time"
+                        value={data?.time}
+                        onChange={handleOneChange}
+                        placeholder="Your Main City"
+                      />
+                    </div>
+                    <div className="mb-6">
+                      <label className="block font-medium mb-2">
+                        Waste Types:
+                      </label>
+                      <div className="flex flex-wrap gap-4">
+                        {wasteTypes.map((type) => (
+                          <label
+                            key={type}
+                            className="flex items-center space-x-2"
+                          >
+                            <input
+                              type="checkbox"
+                              name="wasteType"
+                              value={type}
+                              checked={data.wasteType.includes(type)}
+                              onChange={handleOneChange}
+                              className="accent-green-600 outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
+                            />
+
+                            <span>{type}</span>
+                          </label>
                         ))}
-                      </select>
-
-                      {/* Area Dropdown (Only shown when a city is selected) */}
-                      {selectedCity && city && (
-                        <select
-                          className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[20px] appearance-none  text-gray-700"
-                          name="workarea"
-                          value={selectedArea}
-                          onChange={handleAreaChange}
-                          required
-                        >
-                          <option className="text-gray-400" value="">
-                            -- Choose an Area --
-                          </option>
-                          {city.areas.map((area, index) => (
-                            <option key={index} value={area}>
-                              {area}
-                            </option>
-                          ))}
-                        </select>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
-                      {/* front photo */}
-                      <div className="flex items-center justify-center w-full bg-white">
-                        <label
-                          htmlFor="dropzone-fid"
-                          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
-                        >
-                          {!frontfile && (
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg
-                                className="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 16"
-                              >
-                                <path
-                                  stroke="currentColor"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                />
-                              </svg>
-                              <p className="mb-2 text-[12px] text-center text-gray-700 dark:text-gray-400">
-                                Click or drag and drop to upload <br />
-                                <span className="font-semibold">
-                                  ID Front Side
-                                </span>
-                              </p>
-                              <p className="text-[9px] text-gray-700 dark:text-gray-400">
-                                (Please take a clean National ID (NIC) picture.)
-                              </p>
-                            </div>
-                          )}
-
-                          {frontfile && (
-                            <div className="relative w-full h-full">
-                              <div
-                                className="absolute top-1 right-1 p-2  bg-white rounded-full  group-hover:block"
-                                onClick={deleteFrontImg}
-                              >
-                                <div className="text-2xl text-c-red-100 hover:scale-110 transform transition-all duration-200">
-                                  <MdDelete />
-                                </div>
-                              </div>
-
-                              <img
-                                src={frontfile}
-                                alt="Uploaded NIC"
-                                id="dropzone-fid"
-                                className="w-full h-full object-cover rounded-lg"
-                              />
-                            </div>
-                          )}
-                          <input
-                            id="dropzone-fid"
-                            type="file"
-                            className="hidden"
-                            onChange={fhandleUpNIC}
-                            title="Must be exactly 10 digits"
-                            required
-                          />
-                        </label>
-                      </div>
-                      {/* back photo */}
-                      <div class="flex items-center justify-center w-full bg-white">
-                        <label
-                          for="dropzone-bid"
-                          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
-                        >
-                          {/* dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 */}
-                          {!backfile && (
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg
-                                class="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 16"
-                              >
-                                <path
-                                  stroke="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                />
-                              </svg>
-                              <p class="mb-2 text-[12px] text-center text-gray-700 dark:text-gray-400">
-                                Click or drag and drop to upload <br />{" "}
-                                <span class="font-semibold">ID Back Side</span>
-                              </p>
-                              <p class="text-[9px] text-gray-700 dark:text-gray-400">
-                                (Please take a clean National ID (NIC) picture.)
-                                {/* PNG, JPG (MAX. 800x400px) */}
-                              </p>
-                            </div>
-                          )}
-
-                          {backfile && (
-                            <div className="relative w-full h-full">
-                              <div
-                                className="absolute top-1 right-1 p-2  bg-white rounded-full  group-hover:block"
-                                onClick={deleteBackImg}
-                              >
-                                <div className="text-2xl text-c-red-100 hover:scale-110 transform transition-all duration-200">
-                                  <MdDelete />
-                                </div>
-                              </div>
-                              <img
-                                src={backfile}
-                                alt="Uploaded NIC"
-                                id="dropzone-bid"
-                                className="w-full h-full object-cover rounded-lg"
-                              />
-                            </div>
-                          )}
-                          <input
-                            id="dropzone-bid"
-                            type="file"
-                            className="hidden"
-                            onChange={bhandleUpNIC}
-                            required
-                          />
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* vehicle form */}
-                    <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
-                      <input
-                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                        type="text"
-                        name="reginumber"
-                        value={data.reginumber}
-                        onChange={handleOneChange}
-                        placeholder="Registration Number"
-                        required
-                      />
-                      <input
-                        className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
-                        type="text"
-                        name="chassisnumber"
-                        value={data.chassisnumber}
-                        onChange={handleOneChange}
-                        placeholder="Chassis Number"
-                        required
-                      />
-                    </div>
-                    <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px] bg-white">
-                      <div class="flex items-center justify-center w-full">
-                        <label
-                          for="dropzone-file"
-                          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer "
-                        >
-                          {!vehiclefile && (
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg
-                                class="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 16"
-                              >
-                                <path
-                                  stroke="currentColor"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                />
-                              </svg>
-                              <p class="mb-2 text-sm text-center text-gray-700 dark:text-gray-400">
-                                <span class="font-semibold">Click </span> or
-                                drag and drop to upload <br /> vehicle Image
-                              </p>
-                              <p class="text-xs text-gray-700 dark:text-gray-400">
-                                SVG, PNG, JPG or GIF (MAX. 800x400px)
-                              </p>
-                            </div>
-                          )}
-                          {vehiclefile && (
-                            <div class="relative w-full h-full">
-                              <div
-                                class="absolute top-1 right-1 p-2  bg-white rounded-full  group-hover:block"
-                                onClick={deleteVehicleImg}
-                              >
-                                <div class="text-2xl text-c-red-100 hover:scale-110 transform transition-all duration-200">
-                                  <MdDelete />
-                                </div>
-                              </div>
-                              <img
-                                src={vehiclefile}
-                                alt="Uploaded vehicle"
-                                id="dropzone-file"
-                                class="w-full h-full object-cover rounded-lg"
-                              />
-                            </div>
-                          )}
-                          <input
-                            id="dropzone-file"
-                            type="file"
-                            class="hidden"
-                            onChange={vhandleUpVehicle}
-                          />
-                        </label>
                       </div>
                     </div>
 
                     <div className="flex flex-col gap-5">
                       <button
-                        className="flex items-center transition-colors duration-200 px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] font-chivo font-semibold text-md md:text-lg text-white bg-gray-900 w-fit"
+                        className="flex items-center transition-colors duration-200 px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] font-chivo font-semibold text-md md:text-lg text-white bg-c-green-300 w-fit"
                         type="submit"
                       >
                         Send Message
@@ -569,10 +358,6 @@ const LocateBin = () => {
                           />
                         </i>
                       </button>
-                      <p className="text-md text-gray-700">
-                        By clicking contact us button, you agree our terms and
-                        policy,
-                      </p>
                     </div>
                   </form>
                 </div>

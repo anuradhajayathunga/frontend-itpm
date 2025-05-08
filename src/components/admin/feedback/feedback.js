@@ -53,11 +53,11 @@ const FeedbackList = () => {
     };
 
     return (
-        <section className="py-12 bg-gray-100 min-h-screen">
+        <section className="py-12 min-h-screen">
             <div className="container mx-auto px-4">
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div className=" rounded-2xl shadow-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-center px-6 py-4 border-b">
-                        <h2 className="text-xl font-semibold text-gray-800">User Feedback</h2>
+                        <h2 className="text-xl font-semibold text-gray-800 dark:text-white">User Feedback</h2>
                         <div className="mt-4 md:mt-0">
                             <label htmlFor="search-date" className="mr-2 text-sm font-medium text-gray-600">Search by Date:</label>
                             <input
@@ -71,7 +71,7 @@ const FeedbackList = () => {
                     </div>
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-sm text-left text-gray-700">
-                            <thead className="bg-gray-50">
+                            <thead className="dark:text-white">
                                 <tr>
                                     <th className="px-6 py-3 font-semibold">Name</th>
                                     <th className="px-6 py-3 font-semibold">Date</th>
@@ -80,7 +80,7 @@ const FeedbackList = () => {
                                     <th className="px-6 py-3 font-semibold">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
+                            <tbody className="dark:text-white divide-y divide-gray-200">
                                 {filteredFeedbacks.length === 0 ? (
                                     <tr>
                                         <td colSpan="5" className="px-6 py-4 text-center text-gray-500">

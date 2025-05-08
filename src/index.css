@@ -14,3 +14,32 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+input.defaultCheckbox::before {
+	content: url(../src/assets/svg/checked.svg); 
+	color: white;
+	opacity: 0; 
+	height: 16px; 
+	width: 16px;
+	position: absolute; 
+	left: 50%;
+	transform: translate(-50%, 0px);
+} 
+
+input:checked.defaultCheckbox::before { 
+	opacity: 1;
+}
+
+.responsive-map {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  position: relative;
+  height: 0;
+}
+
+.responsive-map iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

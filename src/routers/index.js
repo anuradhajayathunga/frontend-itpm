@@ -54,6 +54,10 @@ const router = createBrowserRouter([
         path: "store",
         element: <Store />,
       },
+      // {
+      //   path: "locatebin",
+      //   element: <UserPage />,
+      // },
       {
         path: "locatebin",
         element: <LocateBin />,
