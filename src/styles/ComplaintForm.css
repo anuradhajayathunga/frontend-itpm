@@ -1,0 +1,242 @@
+.complaint-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.complaint-header {
+  background: linear-gradient(to right, #f44336, #ff7043);
+  color: white;
+  padding: 1.5rem;
+}
+
+.complaint-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.complaint-header p {
+  margin: 8px 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.complaint-content {
+  padding: 1.5rem;
+}
+
+.alert-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+  padding: 12px 16px;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.alert-icon {
+  color: #f44336;
+  flex-shrink: 0;
+}
+
+.alert-box p {
+  margin: 0;
+  color: #d32f2f;
+  font-size: 0.9rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+select, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: #fff;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2.5rem;
+}
+
+.urgency-options {
+  display: flex;
+  gap: 12px;
+}
+
+.urgency-option {
+  flex: 1;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.urgency-option.low {
+  border: 2px solid #e8f5e9;
+  color: #2e7d32;
+}
+
+.urgency-option.low.selected {
+  background-color: #e8f5e9;
+}
+
+.urgency-option.medium {
+  border: 2px solid #fff8e1;
+  color: #ff8f00;
+}
+
+.urgency-option.medium.selected {
+  background-color: #fff8e1;
+}
+
+.urgency-option.high {
+  border: 2px solid #ffebee;
+  color: #c62828;
+}
+
+.urgency-option.high.selected {
+  background-color: #ffebee;
+}
+
+.urgency-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.urgency-option.low .urgency-dot {
+  background-color: #4caf50;
+}
+
+.urgency-option.medium .urgency-dot {
+  background-color: #ffc107;
+}
+
+.urgency-option.high .urgency-dot {
+  background-color: #f44336;
+}
+
+.complaint-textarea-container {
+  position: relative;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  padding-right: 40px;
+}
+
+.upload-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: background-color 0.2s;
+}
+
+.upload-icon:hover {
+  background-color: #e0e0e0;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  flex: 1;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #d32f2f;
+}
+
+.cancel-button {
+  padding: 0.8rem 1.5rem;
+  background-color: #f0f0f0;
+  color: #555;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Focus states for accessibility */
+select:focus,
+textarea:focus,
+.urgency-option:focus,
+button:focus {
+  outline: 2px solid rgba(244, 67, 54, 0.5);
+  outline-offset: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .complaint-form-container {
+    margin: 1rem;
+    width: auto;
+  }
+  
+  .urgency-options {
+    flex-direction: column;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .cancel-button {
+    text-align: center;
+  }
+}
