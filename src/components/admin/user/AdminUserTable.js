@@ -5,6 +5,8 @@ import moment from "moment";
 import ChangeUserRole from "../../ChangeUserRole";
 import Card from "../../card";
 import CardMenu from "../../card/CardMenu";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 import {
   createColumnHelper,
@@ -155,6 +157,32 @@ const UserTableWithReactTable = () => {
     debugTable: true,
   });
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    const tableColumn = ["Name", "Email", "Role", "Created At"];
+    const tableRows = [];
+
+    allUsers.forEach((user) => {
+      const rowData = [
+        user.name,
+        user.email,
+        user.role,
+        moment(user.createdAt).format("MMM Do YY"),
+      ];
+      tableRows.push(rowData);
+    });
+
+    doc.text("User List", 14, 15);
+    autoTable(doc, {
+      startY: 20,
+      head: [tableColumn],
+      body: tableRows,
+    });
+
+    doc.save("user-table.pdf");
+  };
+
   return (
     <div className="w-full overflow-hidden rounded-lg shadow-xs">
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
@@ -162,7 +190,16 @@ const UserTableWithReactTable = () => {
           <div className="text-xl font-bold text-navy-700 dark:text-white">
             Users
           </div>
-          <CardMenu />
+          <div className="flex justify-center gap-4 ">
+            <button
+              onClick={downloadPDF}
+              className="px-4 py-2 mb-4 text-white bg-green-600 rounded hover:bg-green-700"
+            >
+              Downldoa PDF
+            </button>
+
+            <CardMenu />
+          </div>
         </div>
 
         <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
