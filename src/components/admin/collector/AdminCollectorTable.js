@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SummaryApi from "../../../common";
 import moment from "moment";
 import EditCollectorReq from "../../EditCollectorReq";
-import ComplexTable from "../../../views/admin/tables/components/ComplexTable";
+import ComplexTable from "./ComplexTable";
 
 const CollectorPageWithTable = () => {
   const [allCollecter, setAllCollecter] = useState([]);

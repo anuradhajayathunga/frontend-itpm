@@ -9,32 +9,34 @@ import routes from "../../routes.js";
 const Sidebar = ({ open, onClose }) => {
   return (
     <div
-      className={`sm:none duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white pb-10 shadow-2xl shadow-white/5 transition-all dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
-        open ? "translate-x-0" : "-translate-x-96"
+      className={`duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white  pb-10 shadow-lg transition-all dark:bg-gray-900 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
+        open ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <span
-        className="absolute top-4 right-4 block cursor-pointer xl:hidden"
+      <button
+        className="absolute top-4 right-4 block cursor-pointer text-gray-600 dark:text-white xl:hidden"
         onClick={onClose}
       >
-        <HiX />
-      </span>
+        <HiX size={20} />
+      </button>
 
-      <div className={`mx-[80px] mt-[50px] flex items-center`}>
-        <div className="mt-1 ml-1 text-c-green-300 dark:text-white font-chivo">
-          <h1 className="text-4xl font-bold leading-none ">ECOBIN</h1>
-          <p className="text-c-green-900 text-2xl font-extralight tracking-widest dark:text-white">SOLUTION</p>
-          </div>
+      <div className="mx-6 mt-8 flex items-center">
+        <div className="flex flex-col text-gray-800 dark:text-white">
+          <h1 className="text-3xl font-bold tracking-tight">ECOBIN</h1>
+          <p className="text-gray-500 text-sm font-light tracking-wider dark:text-gray-400">
+            SOLUTION
+          </p>
+        </div>
       </div>
       <div class="mt-14 mb-7 h-px bg-gray-300 dark:bg-white/30" />
       {/* Nav item */}
 
-      <ul className="mb-auto pt-1">
+      <ul className="mb-auto pt-1 ">
         <Links routes={routes} />
       </ul>
 
       {/* Free Horizon Card */}
-      <div className="flex justify-center">
+      <div className="flex justify-center px-5">
         <SidebarCard />
       </div>
 

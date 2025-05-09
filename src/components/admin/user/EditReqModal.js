@@ -5,7 +5,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 bottom-0 left-0 right-0 pt-12  w-full h-full z-10 flex justify-center items-center bg-blue-200 bg-opacity-70">
+    <div className="fixed top-0 bottom-0 left-0 right-0 pt-12  w-full h-full z-10 flex justify-center items-center bg-white/10 p-2 backdrop-blur-md">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold text-gray-800"> Request</h2>
@@ -28,7 +28,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="fname"
                 value={formData.fname}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
                 r
               />
@@ -42,7 +42,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="lname"
                 value={formData.lname}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
               />
             </div>
@@ -57,7 +57,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="email"
                 value={formData.email}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
               />
             </div>
@@ -70,7 +70,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="phone"
                 value={formData.phone}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
               />
             </div>
           </div>
@@ -85,7 +85,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="city"
                 value={formData.city}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
               />
             </div>
@@ -98,7 +98,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 name="address"
                 value={formData.address}
                 onChange={onChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
               />
             </div>
@@ -120,7 +120,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 //     scheduledAt: `${newDate}T${time}`,
                 //   }));
                 // }}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 readOnly
               />
             </div>
@@ -141,7 +141,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
                 //     scheduledAt: `${date}T${newTime}`,
                 //   }));
                 // }}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-green-500"
                 required
               />
             </div>
@@ -191,7 +191,7 @@ const EditModal = ({ isOpen, onClose, onSubmit, formData, onChange }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
             >
               Save Changes
             </button>

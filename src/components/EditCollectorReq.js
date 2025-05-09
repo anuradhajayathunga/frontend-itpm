@@ -37,24 +37,25 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
   const handleStatusChange = (e) => {
     const { value } = e.target;
     const userName = data?.fname || "Collector";
-  
+
     let updatedRole = data.role;
-  
+
     if (value === "Approved") {
       updatedRole = "COLLECTOR";
     } else if (value === "Denied") {
       updatedRole = "GENERAL";
     }
-  
+
     setData((prev) => ({ ...prev, status: value, role: updatedRole }));
-  
+
     const pkg = allPackage.find((pkg) =>
       pkg.title?.toLowerCase().includes(value.toLowerCase())
     );
-  
+
     setEmailData((prev) => ({
       ...prev,
-      subject: pkg?.title ||
+      subject:
+        pkg?.title ||
         (value === "Approved"
           ? `${userName}, Your Collector Request Has Been Approved`
           : `${userName}, An Update on Your Collector Request`),
@@ -121,30 +122,41 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
   const StatusBadge = ({ status }) => {
     const getStatusColor = () => {
       switch (status) {
-        case "Approved": return "bg-green-100 text-green-800";
-        case "Denied": return "bg-red-100 text-red-800";
-        case "Pending": return "bg-yellow-100 text-yellow-800";
-        default: return "bg-gray-100 text-gray-800";
+        case "Approved":
+          return "bg-green-100 text-green-800";
+        case "Denied":
+          return "bg-red-100 text-red-800";
+        case "Pending":
+          return "bg-yellow-100 text-yellow-800";
+        default:
+          return "bg-gray-100 text-gray-800";
       }
     };
 
     return (
-      <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor()}`}>
+      <span
+        className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor()}`}
+      >
         {status}
       </span>
     );
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-6 bg-gray-50 border-b">
           <div className="flex items-center space-x-2">
-            <h2 className="text-xl font-semibold text-gray-800">Collector Request Approval</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Collector Request Approval
+            </h2>
             <StatusBadge status={data.status || "Pending"} />
           </div>
-          <button onClick={onClose} className="text-gray-500 hover:text-red-500 transition-colors">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-red-500 transition-colors"
+          >
             <X size={20} />
           </button>
         </div>
@@ -154,7 +166,11 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
           <div className="flex border-b mb-6">
             <button
               type="button"
-              className={`px-4 py-2 font-medium ${activeTab === "details" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+              className={`px-4 py-2 font-medium ${
+                activeTab === "details"
+                  ? "text-green-600 border-b-2 border-green-600"
+                  : "text-gray-500"
+              }`}
               onClick={() => setActiveTab("details")}
             >
               <div className="flex items-center gap-2">
@@ -164,7 +180,11 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
             </button>
             <button
               type="button"
-              className={`px-4 py-2 font-medium ${activeTab === "email" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+              className={`px-4 py-2 font-medium ${
+                activeTab === "email"
+                  ? "text-green-600 border-b-2 border-green-600"
+                  : "text-gray-500"
+              }`}
               onClick={() => setActiveTab("email")}
             >
               <div className="flex items-center gap-2">
@@ -173,8 +193,12 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
               </div>
             </button>
             <button
-              type="button" 
-              className={`px-4 py-2 font-medium ${activeTab === "documents" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+              type="button"
+              className={`px-4 py-2 font-medium ${
+                activeTab === "documents"
+                  ? "text-green-600 border-b-2 border-green-600"
+                  : "text-gray-500"
+              }`}
               onClick={() => setActiveTab("documents")}
             >
               <div className="flex items-center gap-2">
@@ -188,13 +212,15 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
             <div className="space-y-6">
               {/* Status selector with modern styling */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Status
+                </label>
                 <div className="relative">
                   <select
                     name="status"
                     value={data.status || "Pending"}
                     onChange={handleStatusChange}
-                    className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                    className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-green-500 focus:border-green-500 appearance-none"
                   >
                     {Object.values(STATUS).map((s) => (
                       <option value={s} key={s}>
@@ -203,8 +229,18 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
                     ))}
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    <svg
+                      className="h-4 w-4 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -213,11 +249,15 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
               {/* Collector information cards */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <h3 className="font-medium text-gray-700 mb-3">Personal Information</h3>
+                  <h3 className="font-medium text-gray-700 mb-3">
+                    Personal Information
+                  </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Name</span>
-                      <span className="text-sm font-medium">{data.fname} {data.lname}</span>
+                      <span className="text-sm font-medium">
+                        {data.fname} {data.lname}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Email</span>
@@ -225,25 +265,35 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Phone</span>
-                      <span className="text-sm font-medium">{data.phone || "N/A"}</span>
+                      <span className="text-sm font-medium">
+                        {data.phone || "N/A"}
+                      </span>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <h3 className="font-medium text-gray-700 mb-3">Work Information</h3>
+                  <h3 className="font-medium text-gray-700 mb-3">
+                    Work Information
+                  </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Location</span>
-                      <span className="text-sm font-medium">{data.location || "N/A"}</span>
+                      <span className="text-sm font-medium">
+                        {data.location || "N/A"}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Work Area</span>
-                      <span className="text-sm font-medium">{data.workarea || "N/A"}</span>
+                      <span className="text-sm font-medium">
+                        {data.workarea || "N/A"}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-gray-500">Role</span>
-                      <span className="text-sm font-medium">{data.role || "N/A"}</span>
+                      <span className="text-sm font-medium">
+                        {data.role || "N/A"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -254,7 +304,9 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
           {activeTab === "email" && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Recipient</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Recipient
+                </label>
                 <input
                   type="email"
                   value={emailData.email}
@@ -265,24 +317,28 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Subject
+                </label>
                 <input
                   type="text"
                   name="subject"
                   value={emailData.subject}
                   onChange={handleEmailInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   value={emailData.message}
                   onChange={handleEmailInputChange}
                   rows={8}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                   required
                 />
               </div>
@@ -291,8 +347,10 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
 
           {activeTab === "documents" && (
             <div className="space-y-6">
-              <h3 className="font-medium text-gray-700">Verification Documents</h3>
-              
+              <h3 className="font-medium text-gray-700">
+                Verification Documents
+              </h3>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="border border-gray-200 rounded-lg overflow-hidden">
                   <div className="bg-gray-50 px-3 py-2 border-b">
@@ -377,13 +435,29 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
+              className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center gap-2"
             >
               {isLoading ? (
                 <>
-                  <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   <span>Processing...</span>
                 </>

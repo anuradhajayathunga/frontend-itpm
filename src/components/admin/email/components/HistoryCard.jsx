@@ -8,7 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Import icons
 const HistoryCard = () => {
   const [allMessages, setAllMessages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const messagesPerPage = 5;
+  const messagesPerPage = 6;
 
   const fetchAllMessages = async () => {
     try {
@@ -62,7 +62,7 @@ const HistoryCard = () => {
         {getCurrentMessages().map((data, index) => (
           <div
             key={index}
-            className="flex w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700 border-b dark:border-navy-700"
+            className="flex w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-md dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700 border-b dark:border-navy-700"
           >
             <div className="flex items-center gap-4">
               <div className="h-6 w-6 flex items-center justify-center">
