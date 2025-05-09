@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import cityList from "../helpers/city";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import VoiceInputField from "../components/VoiceInputField";
 import uploadImage from "../helpers/uploadImage";
 import { MdDelete } from "react-icons/md";
 import SummaryApi from "../common";
@@ -246,7 +247,7 @@ const LocateBin = () => {
                   <form className="flex-1" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                       {user?._id && (
-                        <input
+                        <VoiceInputField
                           className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px] capitalize"
                           type="text"
                           name="fname"

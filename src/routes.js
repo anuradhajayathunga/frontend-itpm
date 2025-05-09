@@ -24,7 +24,7 @@ import { SiOpencollective } from "react-icons/si";
 import AdminCollectorTable from "./components/admin/collector/AdminCollectorTable";
 import Users from "./components/admin/user/Users";
 import Email from "./components/admin/email/email";
-import Feedback from "./components/admin/feedback/feedback";
+import ReviewDashboard from "./pages/ReviewDashboard";
 
 const routes = [
   {
@@ -81,8 +81,8 @@ const routes = [
     name: "Feedback",
     layout: "/admin",
     icon: <MdOutlineFeedback className="h-6 w-6" />,
-    path: "feedbacks",
-    component: <Feedback />,
+    path: "feedback-dashboard",
+    component: <ReviewDashboard />,
   },
   // {
   //   name: "Sign In",

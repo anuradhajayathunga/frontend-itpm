@@ -115,6 +115,24 @@ const SummaryApi = {
     url: `${backendDomin}/api/tasks/${email}`,
     method: "get",
   }),
+
+    // 🔽 Feedback endpoints
+  createFeedback: {
+    url: `${backendDomin}/api/feedbacks`,
+    method: "post", // FormData with image
+  },
+  getAllFeedbacks: {
+    url: `${backendDomin}/api/all-feedbacks`,
+    method: "get",
+  },
+  updateFeedbackById: (id) => ({
+    url: `${backendDomin}/api/feeedbacksbyid/${id}`,
+    method: "put",
+  }),
+  deleteFeedbackById: (id) => ({
+    url: `${backendDomin}/api/delete-feedbacks/${id}`,
+    method: "delete",
+  }),
 };
 
 export default SummaryApi;

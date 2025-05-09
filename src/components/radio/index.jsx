@@ -37,7 +37,7 @@ const Radio = (props) => {
            ? "checked:!border-indigo-500 checked:before:!bg-indigo-500 dark:checked:!border-indigo-400 dark:checked:before:!bg-indigo-400"
            : color === "gray"
            ? "checked:!border-gray-500 checked:before:!bg-gray-500 dark:checked:!border-gray-400 dark:checked:before:!bg-gray-400"
-           : "checked:!border-brand-500 checked:before:!bg-brand-500 dark:checked:!border-brand-400 dark:checked:before:!bg-brand-400"
+           : "checked:!border-lime-500 checked:before:!bg-lime-500 dark:checked:!border-lime-400 dark:checked:before:!bg-lime-400"
        } `}
       {...rest}
     />

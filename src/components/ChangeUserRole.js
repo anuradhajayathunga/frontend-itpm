@@ -34,7 +34,7 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900  bg-opacity-50 backdrop-blur-sm z-50">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md relative">
         <button
           className="absolute top-3 right-3 text-gray-600 hover:text-red-500  "
@@ -42,14 +42,18 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
         >
           <IoMdClose size={24} />
         </button>
-        
+
         <h1 className="text-xl font-semibold text-gray-700 mb-4 text-center">
           Change User Role
         </h1>
 
         <div className="space-y-3">
-          <p className="text-gray-600"><span className="font-semibold">Name:</span> {name}</p>
-          <p className="text-gray-600"><span className="font-semibold">Email:</span> {email}</p>
+          <p className="text-gray-600">
+            <span className="font-semibold">Name:</span> {name}
+          </p>
+          <p className="text-gray-600">
+            <span className="font-semibold">Email:</span> {email}
+          </p>
           <div className="flex items-center justify-between border rounded-lg px-3 py-2">
             <p className="text-gray-700 font-medium">Role:</p>
             <select
@@ -58,7 +62,9 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
               onChange={handleOnChangeSelect}
             >
               {Object.values(ROLE).map((el) => (
-                <option value={el} key={el}>{el}</option>
+                <option value={el} key={el}>
+                  {el}
+                </option>
               ))}
             </select>
           </div>

@@ -8,7 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Import icons
 const HistoryCard = () => {
   const [allMessages, setAllMessages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const messagesPerPage = 6;
+  const messagesPerPage = 5;
 
   const fetchAllMessages = async () => {
     try {
@@ -49,12 +49,12 @@ const HistoryCard = () => {
     <Card extra={"h-[600px] w-full"}>
       {/* Header */}
       <div className="flex items-center justify-between rounded-t-3xl p-3">
-        <div className="text-lg font-bold text-navy-700 dark:text-white">
+        <h4 className="text-lg font-bold text-navy-700 dark:text-white">
           Emails
-        </div>
-        <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
-          {/* See all */}
-        </button>
+        </h4>
+        {/* <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-lime-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
+          See all
+        </button> */}
       </div>
 
       {/* Scrollable Message List */}
@@ -103,7 +103,7 @@ const HistoryCard = () => {
             className={`flex items-center gap-1 px-3 py-1 rounded-md transition ${
               currentPage === 1
                 ? "text-gray-400 cursor-not-allowed"
-                : "bg-brand-500 text-white hover:bg-brand-600"
+                : "bg-lime-500 text-white hover:bg-lime-600"
             }`}
           >
             <FiChevronLeft size={18} />
@@ -120,7 +120,7 @@ const HistoryCard = () => {
             className={`flex items-center gap-1 px-3 py-1 rounded-md transition ${
               currentPage === totalPages
                 ? "text-gray-400 cursor-not-allowed"
-                : "bg-brand-500 text-white hover:bg-brand-600"
+                : "bg-lime-500 text-white hover:bg-lime-600"
             }`}
           >
             {/* <span>Next</span> */}

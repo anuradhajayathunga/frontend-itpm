@@ -174,7 +174,7 @@ const InvoiceGenerator = ({ collectorData, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 bg-white/10 p-2 backdrop-blur-md">
+    <div className="fixed inset-0 bg-gray-900  bg-opacity-50 flex items-center justify-center z-50 bg-white/10 p-2 backdrop-blur-md">
       <div className="bg-white rounded-lg shadow-xl p-6 m-4 max-w-5xl w-full max-h-screen">
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold text-gray-800">Invoice Preview</h2>
@@ -692,7 +692,7 @@ export default function ComplexTable(props) {
             className={`px-4 py-1 rounded-md transition ${
               !getCanPreviousPage()
                 ? "text-gray-400 cursor-not-allowed"
-                : "bg-brand-500 text-white hover:bg-brand-600"
+                : "bg-lime-500 text-white hover:bg-lime-600"
             }`}
           >
             Previous
@@ -708,7 +708,7 @@ export default function ComplexTable(props) {
             className={`px-4 py-1 rounded-md transition ${
               !getCanNextPage()
                 ? "text-gray-400 cursor-not-allowed"
-                : "bg-brand-500 text-white hover:bg-brand-600"
+                : "bg-lime-500 text-white hover:bg-lime-600"
             }`}
           >
             Next

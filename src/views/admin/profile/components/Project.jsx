@@ -30,7 +30,7 @@ const Project = () => {
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
               <a
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                className="ml-1 font-medium text-lime-500 hover:text-lime-500 dark:text-white"
                 href=" "
               >
                 See product details
@@ -55,7 +55,7 @@ const Project = () => {
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
               <a
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                className="ml-1 font-medium text-lime-500 hover:text-lime-500 dark:text-white"
                 href=" "
               >
                 See product details
@@ -80,7 +80,7 @@ const Project = () => {
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
               <a
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                className="ml-1 font-medium text-lime-500 hover:text-lime-500 dark:text-white"
                 href=" "
               >
                 See product details

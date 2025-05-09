@@ -143,7 +143,7 @@ const CollectorApprovalWithEmail = ({ onClose, collecData, fetchData }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-900  bg-opacity-40 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-6 bg-gray-50 border-b">
