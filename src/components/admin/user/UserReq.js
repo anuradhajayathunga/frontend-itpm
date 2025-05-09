@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import html2canvas from "html2canvas";
 import SummaryApi from "../../../common";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -19,6 +20,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import CreateTaskModal from "./CreateTaskModel";
+import jsPDF from "jspdf";
 
 const columnHelper = createColumnHelper();
 
@@ -40,7 +42,7 @@ const UserReq = () => {
     wasteType: [],
     scheduledAt: "",
   });
-
+  const printRef = useRef();
   const [taskFormData, setTaskFormData] = useState({
     title: "",
     description: "",
@@ -370,14 +372,49 @@ const UserReq = () => {
     debugTable: true,
   });
 
+  const downloadPDF = async () => {
+    const element = printRef.current;
+    if (!element) {
+      return;
+    }
+    const canvas = await html2canvas(element);
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: "a4",
+    });
+
+    const imgProperties = pdf.getImageProperties(data);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+    console.log(imgProperties);
+
+    pdf.addImage(data, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("collector.pdf");
+  };
+
   return (
-    <Card className="w-full overflow-hidden rounded-lg shadow-xs">
+    <Card
+      ref={printRef}
+      className="w-full overflow-hidden rounded-lg shadow-xs"
+    >
       <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
         <div className="relative flex items-center justify-between pt-4">
           <div className="text-xl font-bold text-navy-700 dark:text-white">
             Waste Collection Request
           </div>
-          <CardMenu />
+          <div className="flex justify-center gap-4 ">
+            <button
+              onClick={downloadPDF}
+              className="px-4 py-2 mb-4 text-white bg-green-600 rounded hover:bg-green-700"
+            >
+              Downldoa PDF
+            </button>
+
+            <CardMenu />
+          </div>
         </div>
 
         <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
