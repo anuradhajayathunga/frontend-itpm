@@ -11,12 +11,12 @@ const ForgotPassword = () => {
   };
   return (
     <div className="">
-    <Header />
+      <Header />
       <div className="px-[12px] md:px-[36px] xl:px-0 mt-[70px] text-center">
         <h2 className="font-bold font-chivo text-[35px] leading-[30px] md:text-heading-3 mb-[13px]">
           Reset password
         </h2>
-        <p className="text-text text-gray-500 mb-[60px]">
+        <p className="text-text text-gray-700 mb-[60px]">
           Enter your email to reset your password.
         </p>
         <form

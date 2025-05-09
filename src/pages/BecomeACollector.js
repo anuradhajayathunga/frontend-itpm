@@ -215,7 +215,7 @@ const BecomeACollector = () => {
             <span className="font-chivo inline-block bg-c-green-300/20 text-c-white-100 py-3 px-6 rounded-full text-sm leading-4 mb-2">
               What We Do, What You Get
             </span>
-            <h1 className="text-c-white-300 font-montserrat font-black lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
+            <h1 className="text-c-white-300 ffont-montserrat font-black  lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
               Join <span className="text-c-green-300">EcoBin</span> <br /> as a
               Collector!{" "}
             </h1>
@@ -230,7 +230,7 @@ const BecomeACollector = () => {
                 to="collect-form"
                 smooth={true}
                 duration={500}
-                className="flex items-center transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-c-green-300 text-white hover:bg-gray-100 hover:text-black text-lg font-chivo font-semibold tracking-wide mr-6"
+                className="flex items-center transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-c-green-300 text-white hover:bg-gray-100 hover:text-gray-900 text-lg font-chivo font-semibold tracking-wide mr-6"
               >
                 Join Our Team
                 {/* <img
@@ -238,9 +238,9 @@ const BecomeACollector = () => {
                   width={12}
                   height={12}
                   alt="arrow right icon"
-                  className="ml-2 group-hover:filter-black"
+                  className="ml-2 group-hover:filter-gray-900 "
                 /> */}
-                <div className="ml-[7px] text-base text-white group-hover:text-black">
+                <div className="ml-[7px] text-base text-white group-hover:hover:text-gray-900 ">
                   <FaArrowRightLong />
                 </div>
               </ScrollLink>
@@ -257,7 +257,7 @@ const BecomeACollector = () => {
                   alt="arrow right icon"
                   className="ml-2"
                 /> */}
-                <div className="ml-[7px] text-base text-black group-hover:text-white">
+                <div className="ml-[7px] text-base text-gray-900  group-hover:text-white">
                   <FaArrowRightLong />
                 </div>
               </Link>
@@ -293,7 +293,7 @@ const BecomeACollector = () => {
                   src="assets/images/mail.png"
                   alt=""
                 />
-                <p className="text-capitalized text-gray-500 uppercase tracking-[2px] mb-[15px]">
+                <p className="text-capitalized text-gray-700 uppercase tracking-[2px] mb-[15px]">
                   Join us
                 </p>
                 <h2 className="font-bold font-chivo text-[25px] leading-[30px] md:text-heading-3 mb-[22px]">
@@ -426,7 +426,7 @@ const BecomeACollector = () => {
                           {!frontfile && (
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
                               <svg
-                                className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                                className="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -440,13 +440,13 @@ const BecomeACollector = () => {
                                   d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                 />
                               </svg>
-                              <p className="mb-2 text-[12px] text-center text-gray-500 dark:text-gray-400">
+                              <p className="mb-2 text-[12px] text-center text-gray-700 dark:text-gray-400">
                                 Click or drag and drop to upload <br />
                                 <span className="font-semibold">
                                   ID Front Side
                                 </span>
                               </p>
-                              <p className="text-[9px] text-gray-500 dark:text-gray-400">
+                              <p className="text-[9px] text-gray-700 dark:text-gray-400">
                                 (Please take a clean National ID (NIC) picture.)
                               </p>
                             </div>
@@ -491,7 +491,7 @@ const BecomeACollector = () => {
                           {!backfile && (
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                               <svg
-                                class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                                class="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -505,11 +505,11 @@ const BecomeACollector = () => {
                                   d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                 />
                               </svg>
-                              <p class="mb-2 text-[12px] text-center text-gray-500 dark:text-gray-400">
+                              <p class="mb-2 text-[12px] text-center text-gray-700 dark:text-gray-400">
                                 Click or drag and drop to upload <br />{" "}
                                 <span class="font-semibold">ID Back Side</span>
                               </p>
-                              <p class="text-[9px] text-gray-500 dark:text-gray-400">
+                              <p class="text-[9px] text-gray-700 dark:text-gray-400">
                                 (Please take a clean National ID (NIC) picture.)
                                 {/* PNG, JPG (MAX. 800x400px) */}
                               </p>
@@ -575,7 +575,7 @@ const BecomeACollector = () => {
                           {!vehiclefile && (
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                               <svg
-                                class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                                class="w-8 h-8 mb-4 text-gray-700 dark:text-gray-400"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -589,11 +589,11 @@ const BecomeACollector = () => {
                                   d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                 />
                               </svg>
-                              <p class="mb-2 text-sm text-center text-gray-500 dark:text-gray-400">
+                              <p class="mb-2 text-sm text-center text-gray-700 dark:text-gray-400">
                                 <span class="font-semibold">Click </span> or
                                 drag and drop to upload <br /> vehicle Image
                               </p>
-                              <p class="text-xs text-gray-500 dark:text-gray-400">
+                              <p class="text-xs text-gray-700 dark:text-gray-400">
                                 SVG, PNG, JPG or GIF (MAX. 800x400px)
                               </p>
                             </div>
@@ -628,7 +628,7 @@ const BecomeACollector = () => {
 
                     <div className="flex flex-col gap-5">
                       <button
-                        className="flex items-center transition-colors duration-200 px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] font-chivo font-semibold text-md md:text-lg text-white bg-gray-900 w-fit"
+                        className="flex items-center transition-colors duration-200 px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] font-chivo font-semibold text-md md:text-lg text-white bg-c-green-300 w-fit"
                         type="submit"
                       >
                         Send Message
@@ -640,7 +640,7 @@ const BecomeACollector = () => {
                           />
                         </i>
                       </button>
-                      <p className="text-md text-gray-500">
+                      <p className="text-md text-gray-700">
                         By clicking contact us button, you agree our terms and
                         policy,
                       </p>

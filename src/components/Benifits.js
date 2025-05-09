@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const Benifits = () => {
   return (
     <div>
-          <div className="px-3 md:px-9 xl:px-0 mt-16 text-center mx-auto max-w-4xl">
+      <div className="px-3 md:px-9 xl:px-0 mt-16 text-center mx-auto max-w-4xl">
         <span className="font-chivo inline-block bg-c-green-100/20 text-c-green-900 py-3 px-7 rounded-full text-sm leading-4 mb-4">
           How It Works?
         </span>
@@ -24,7 +24,7 @@ const Benifits = () => {
             <h4 className="font-bold font-chivo text-[14px] xl:text-lg mb-[15px]">
               Earn Money{" "}
             </h4>
-            <p className="text-md text-gray-500">
+            <p className="text-md text-gray-700">
               Get paid for each collection and build a stable income.{" "}
             </p>
             <img
@@ -44,7 +44,7 @@ const Benifits = () => {
             <h4 className="font-bold font-chivo text-[14px] xl:text-lg mb-[15px]">
               Flexible Hours
             </h4>
-            <p className="text-text text-gray-500">
+            <p className="text-text text-gray-700">
               Choose your working hours and pick up assignments that fit your
               schedule.{" "}
             </p>
@@ -65,7 +65,7 @@ const Benifits = () => {
             <h4 className="font-bold font-chivo text-[14px] xl:text-lg mb-[15px]">
               Sustainability
             </h4>
-            <p className="text-text text-gray-500">
+            <p className="text-text text-gray-700">
               Help reduce waste by collecting and ensuring responsible
               recycling.
             </p>
@@ -86,7 +86,7 @@ const Benifits = () => {
             <h4 className="font-bold font-chivo text-[14px] xl:text-lg mb-[15px]">
               Work Assignments
             </h4>
-            <p className="text-text text-gray-500">
+            <p className="text-text text-gray-700">
               Receive scheduled pickups near your location for a steady
               workflow.{" "}
             </p>
@@ -107,14 +107,12 @@ const Benifits = () => {
             <h4 className="font-bold font-chivo text-[14px] xl:text-lg mb-[15px]">
               Complete
             </h4>
-            <p className="text-text text-gray-500">After-release Support</p>
+            <p className="text-text text-gray-700">After-release Support</p>
           </div>
         </div>
       </div>
-    
-    
     </div>
-  )
-}
+  );
+};
 
-export default Benifits
+export default Benifits;

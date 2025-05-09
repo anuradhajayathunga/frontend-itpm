@@ -1,0 +1,401 @@
+/* Base styles with modern variables */
+:root {
+  --primary-color: #3a6df0;
+  --primary-hover: #2954c8;
+  --primary-light: #e8effe;
+  --error-color: #f03e3e;
+  --error-light: #fff5f5;
+  --warning-color: #f59f00;
+  --warning-light: #fff9db;
+  --success-color: #37b24d;
+  --success-light: #ebfbee;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --transition: all 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+  line-height: 1.5;
+}
+
+/* Container with improved shadow */
+.complaint-form-container {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+}
+
+/* Header with modern gradient */
+.complaint-header {
+  background: linear-gradient(135deg, var(--primary-color), #4f74f0);
+  color: #fff;
+  padding: 2rem;
+}
+
+.complaint-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.complaint-header p {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* Content padding */
+.complaint-content {
+  padding: 2rem;
+}
+
+/* Alert box with softer colors */
+.alert-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--primary-light);
+  border-left: 4px solid var(--primary-color);
+  padding: 16px;
+  margin-bottom: 1.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.alert-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.alert-box p {
+  margin: 0;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+}
+
+/* Form Group with consistent spacing */
+.form-group {
+  margin-bottom: 1.75rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-700);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Improved form controls with consistent styling */
+select,
+textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--gray-800);
+  transition: var(--transition);
+}
+
+select:hover,
+textarea:hover {
+  border-color: var(--gray-400);
+}
+
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(58, 109, 240, 0.15);
+}
+
+/* Custom select with modern arrow */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2.5rem;
+}
+
+/* Updated urgency options with better spacing */
+.urgency-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.urgency-option {
+  flex: 1;
+  min-width: 115px;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid var(--gray-300);
+  transition: var(--transition);
+  background-color: white;
+}
+
+.urgency-option:hover {
+  border-color: var(--gray-400);
+}
+
+/* Urgency levels with refined colors */
+.urgency-option.low {
+  border-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.urgency-option.low.selected {
+  background-color: var(--success-light);
+  border-color: var(--success-color);
+}
+
+.urgency-option.medium {
+  border-color: var(--warning-light);
+  color: var(--warning-color);
+}
+
+.urgency-option.medium.selected {
+  background-color: var(--warning-light);
+  border-color: var(--warning-color);
+}
+
+.urgency-option.high {
+  border-color: var(--error-light);
+  color: var(--error-color);
+}
+
+.urgency-option.high.selected {
+  background-color: var(--error-light);
+  border-color: var(--error-color);
+}
+
+/* Improved urgency dot */
+.urgency-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.urgency-option.low .urgency-dot {
+  background-color: var(--success-color);
+}
+
+.urgency-option.medium .urgency-dot {
+  background-color: var(--warning-color);
+}
+
+.urgency-option.high .urgency-dot {
+  background-color: var(--error-color);
+}
+
+/* Textarea with improved design */
+.complaint-textarea-container {
+  position: relative;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+  padding-right: 50px;
+  line-height: 1.6;
+}
+
+/* Upload icon with better styling */
+.upload-icon {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-color);
+  background-color: white;
+  border: 1px solid var(--gray-300);
+  transition: var(--transition);
+}
+
+.upload-icon:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+}
+
+/* Modern buttons */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 2rem;
+}
+
+.submit-button,
+.cancel-button {
+  flex: 1;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-button:disabled {
+  background-color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.cancel-button:hover {
+  background-color: var(--gray-300);
+}
+
+.cancel-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Image preview with improved design */
+.image-preview-container {
+  margin: 15px 0 24px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.image-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--gray-100);
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.image-preview-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.remove-image-btn {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.remove-image-btn:hover {
+  background-color: var(--error-light);
+}
+
+.image-preview {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Mobile responsive with improved breakpoints */
+@media (max-width: 768px) {
+  .complaint-form-container {
+    margin: 1rem;
+    border-radius: var(--radius-md);
+  }
+  
+  .complaint-header {
+    padding: 1.5rem;
+  }
+  
+  .complaint-content {
+    padding: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .submit-button, .cancel-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .urgency-options {
+    flex-direction: column;
+  }
+  
+  .urgency-option {
+    width: 100%;
+  }
+}

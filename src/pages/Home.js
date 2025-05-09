@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"; // For navigation between pages
+import { Link as ScrollLink } from "react-scroll"; // For smooth scrolling
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -11,34 +11,35 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-
-
-
 const services = [
   {
     title: "Convenient & Hassle-Free",
-    description:"ECOBIN smart bins simplify waste disposal with real-time alerts and optimized routes, saving users and operators time and effort.",
+    description:
+      "ECOBIN smart bins simplify waste disposal with real-time alerts and optimized routes, saving users and operators time and effort.",
     icon: "assets/images/icons/icon-flower.svg",
     bgIcon: "assets/images/icons/icon-flower-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Earn from Your Waste",
-    description:"ECOBIN rewards users for recycling by turning waste into valuable resources for the community, by offering incentives such as discounts, points or cash back.",
+    description:
+      "ECOBIN rewards users for recycling by turning waste into valuable resources for the community, by offering incentives such as discounts, points or cash back.",
     icon: "assets/images/icons/icon-map.svg",
     bgIcon: "assets/images/icons/icon-map-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Eco-Friendly Impact",
-    description:"Reduces landfill waste, promotes recycling and reduces carbon emissions, helping to create a cleaner, greener and more sustainable environment for future generations.",
+    description:
+      "Reduces landfill waste, promotes recycling and reduces carbon emissions, helping to create a cleaner, greener and more sustainable environment for future generations.",
     icon: "assets/images/icons/icon-pine.svg",
     bgIcon: "assets/images/icons/icon-pine-white.svg",
     bgColor: "bg-c-green-300/60",
   },
   {
     title: "Trusted by Thousands",
-    description:"ECOBIN is a proven solution adopted by municipalities, businesses and residents around the world, ensuring reliability, transparency and measurable environmental benefits.",
+    description:
+      "ECOBIN is a proven solution adopted by municipalities, businesses and residents around the world, ensuring reliability, transparency and measurable environmental benefits.",
     icon: "assets/images/icons/icon-pine.svg",
     bgIcon: "assets/images/icons/icon-pine-white.svg",
     bgColor: "bg-c-green-300/60",
@@ -56,9 +57,7 @@ const features = [
     title: "Introducing New Features",
     icon: "/assets/number-3_9507588.png",
   },
-  { title: "Dynamic Boosting",
-    icon: "/assets/number-4_9507599.png" 
-  },
+  { title: "Dynamic Boosting", icon: "/assets/number-4_9507599.png" },
 ];
 
 // ...
@@ -116,7 +115,7 @@ const Home = () => {
         <div className="px-[12px] md:px-[40px] xl:px-[60px] mt-0 z-10 relative py-[100px] lg:mx-[200px] lg:py-[120px] max-w-[850px] lg:flex lg:items-center">
           {/* Left Side - Text Content */}
           <div className="flex-1">
-            <h1 className="text-c-white-300 font-montserrat font-black lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
+            <h1 className="text-c-white-300 font-montserrat font-black  lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
               Turn your waste into value with the
               <span className="text-c-green-300"> EcoBin </span>Solution!
             </h1>
@@ -128,25 +127,28 @@ const Home = () => {
             <div className="flex items-center justify-start">
               <button type="button">
                 <Link
-                  to="/"
+                  to="/locatebin"
                   className="flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] bg-c-green-300 text-white hover:bg-gray-100 hover:text-gray-900 text-heading-6 tracking-wide mr-[22px] hover:translate-y-[-2px]"
                 >
                   <span className="block text-inherit w-full h-full rounded-[50px] text-lg font-chivo font-semibold">
                     Get Start
                   </span>
                   {/* <img
-                    className="ml-[7px] w-[12px] filter-white group-hover:filter-black"
+                    className="ml-[7px] w-[12px] filter-white group-hover:filter-gray-900 "
                     src="assets/images/icons/icon-right.svg"
                     alt="arrow right icon"
                   /> */}
-                  <div className="ml-[7px] text-base text-white group-hover:text-black">
+                  <div className="ml-[7px] text-base text-white group-hover:text-gray-900 ">
                     <FaArrowRightLong />
                   </div>
                 </Link>
               </button>
-              <Link
-                to="/"
-                className="text-base flex items-center font-chivo font-bold text-[18px] leading-[18px] gap-[5px]"
+              <ScrollLink
+                to="why-choose"
+                smooth={true}
+                duration={500}
+                className="text-base flex items-center font-chivo font-bold
+                text-[18px] leading-[18px] gap-[5px] cursor-pointer "
               >
                 See More
                 <img
@@ -154,7 +156,7 @@ const Home = () => {
                   src="assets/images/icons/icon-right.svg"
                   alt="arrow right icon"
                 />
-              </Link>
+              </ScrollLink>
             </div>
           </div>
 
@@ -194,7 +196,7 @@ const Home = () => {
 
         {/* Optional: Video Modal */}
         {isVideoPlaying && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-900  bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg">
               <button
                 className="absolute top-2 right-2 text-gray-700 text-lg"
@@ -214,13 +216,13 @@ const Home = () => {
         )}
       </div>
       {/* why choose ecobin */}
-      <div className="px-3 md:px-9 xl:px-0 mt-16 lg:mt-24 ">
+      <div id="why-choose" className="px-3 md:px-9 xl:px-0 mt-16 lg:mt-24 ">
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="font-bold font-chivo mx-auto text-3xl leading-[44px] md:text-4xl md:leading-[52px] lg:text-5xl text-gray-900 mb-6 max-w-2xl">
             Why Choose ECOBIN?{" "}
           </h2>
-          <p className="text-lg text-gray-600 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-700 mx-auto max-w-3xl">
             At ECOBIN, we’re more than just a recycling platform. we’re your
             partner in creating a sustainable future.
           </p>
@@ -228,7 +230,9 @@ const Home = () => {
 
         {/* Service Cards */}
         <div className="max-w-[1320px] mx-auto relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">            {services.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {" "}
+            {services.map((service, index) => (
               <div
                 key={index}
                 className={`rounded-2xl p-8 md:py-14 md:px-12 relative mb-5 flex flex-col justify-between transition-all duration-300 ${service.bgColor} hover:-translate-y-1`}
@@ -242,7 +246,9 @@ const Home = () => {
                   <h2 className="font-bold text-dark font-chivo text-2xl md:text-3xl mb-8">
                     {service.title}
                   </h2>
-                  <p className="font-medium text-gray-600 mb-8">{service.description}</p>
+                  <p className="font-medium text-white mb-8">
+                    {service.description}
+                  </p>
                 </div>
                 <Link
                   to="/"
@@ -325,13 +331,13 @@ const Home = () => {
         </div>
       </div>
       {/* find your nearest bin */}
-      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-300/50 branding">
+      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-600/20 limeing">
         {/* Left Section - Text Content */}
         <div className="p-5 md:p-16 lg:w-1/2">
           <h2 className="font-bold font-chivo text-2xl  leading-[32px] md:text-4xl mb-8">
             Find Your Nearest Bin
           </h2>
-          <p className="text-lg text-gray-600 mb-10">
+          <p className="text-lg text-gray-700 mb-10">
             Locate your closest collection point with just a few clicks. Our
             interactive map helps you find bins that accept your specific items,
             making recycling convenient and efficient.
@@ -340,13 +346,13 @@ const Home = () => {
           {/* Learn More Button */}
           <Link
             to={"#"}
-            className="flex items-center z-10 relative transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-white text-gray-900 hover:bg-gray-900 hover:text-white w-fit shadow-md"
+            className="flex items-center z-10 relative transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-white text-gray-900 hover:bg-green-600 hover:text-white w-fit shadow-md"
           >
             <span className="block text-lg font-semibold font-chivo">
               Get Start
             </span>
             <img
-              className="ml-2 w-3 transition group-hover:invert"
+              className="ml-2 "
               src="/assets/images/icons/icon-right.svg"
               alt="arrow right icon"
               width={12}
@@ -364,13 +370,6 @@ const Home = () => {
             width={600}
             height={400}
           />
-          <img
-            className="absolute top-0 right-0"
-            src="/assets/images/icons/pattern-3.svg"
-            alt="pattern"
-            width={150}
-            height={150}
-          />
 
           {/* Play Button */}
           {/* <button className="rounded-full bg-white grid place-items-center absolute w-[135px] h-[135px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 shadow-lg">
@@ -385,13 +384,13 @@ const Home = () => {
       </div>
       {/* what our user say! */}
       <div className="px-3 md:px-9 xl:px-0 mt-16  mx-auto relative max-w-[1320px]">
-        <div className="flex items-center justify-between mb-8 md:mb-20">
+        <div className="flex items-center justify-between mb-8 md:mb-12">
           <div>
-            <h2 className="text-gray-900 font-bold text-2xl md:text-4xl lg:text-5xl mb-5">
+            <h2 className="text-gray-900 font-bold text-2xl md:text-4xl lg:text-5xl mb-3">
               Our Happy Customers
             </h2>
             <p className="text-gray-600">
-              Know about our clients, we are a worldwide corporate brand
+              Know about our clients, we are a worldwide corporate lime
             </p>
           </div>
           <div className="flex items-center gap-5">

@@ -7,53 +7,55 @@ import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
-import ROLE from "../common/role";
+import ROLE from "../common/mainRoles";
+import Profile from "./Profile";
+
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
-  console.log("user header", user);
-
   const [menuDisplay, setMenuDisplay] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false); // To control smooth transition
+  const [fadeOut, setFadeOut] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (menuDisplay) {
-      setFadeOut(false); // Reset fade-out animation
+      setFadeOut(false);
       const timer = setTimeout(() => {
-        setFadeOut(true); // Start fade-out animation
-        setTimeout(() => setMenuDisplay(false), 300); // Hide after animation
-      }, 3000); // Auto-hide after 3 seconds
-
+        setFadeOut(true);
+        setTimeout(() => setMenuDisplay(false), 300);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [menuDisplay]);
 
   const handleLogout = async () => {
-    const fetchData = await fetch(SummaryApi.UserLogout.url, {
-      method: SummaryApi.UserLogout.method,
-      credentials: "include",
-    });
+    try {
+      const fetchData = await fetch(SummaryApi.UserLogout.url, {
+        method: SummaryApi.UserLogout.method,
+        credentials: "include",
+      });
 
-    const data = await fetchData.json();
+      const data = await fetchData.json();
 
-    if (data.success) {
-      toast.success(data.message);
-      dispatch(setUserDetails(null));
-    }
-    if (data.error) {
-      toast.error(data.message);
+      if (data.success) {
+        toast.success(data.message);
+        dispatch(setUserDetails(null));
+      } else if (data.error) {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Failed to logout. Please try again.");
     }
   };
 
-  //mobile nav bar
-
   return (
-    <div className="wrapper mx-auto text-gray-900 font-medium  bg-white">
-      <header className="h-auto full-width relative py-[15px] first-letter:lg:py-[26px]">
+    <div className="wrapper mx-auto text-gray-900 font-medium">
+      <header className="h-auto w-full fixed top-0 left-0 bg-white/10 p-2 backdrop-blur-xl z-50  py-[15px] first-letter:lg:py-[26px]">
         <div className="px-[12px] md:px-[36px] xl:px-0 mt-0 flex items-center justify-between mx-auto relative max-w-[1320px]">
           <Link to={"/"} className="flex">
             <img
-              className="logo z-50 w-[90px] md:w-[101px] lg:w-[122px] xl:w-[138px]"
+              className="logo z-50 w-[90px] md:w-[100px] lg:w-[120px] xl:w-[138px]"
               src="/assets/Logo/Logo.svg"
               alt="Company logo"
             />
@@ -65,35 +67,21 @@ const Header = () => {
                 <Link
                   aria-current="page"
                   to={"/store"}
-                  className="router-link-active router-link-exact-active hover:text-c-green-300  text-base font-inter menu-link  lg:text-lg mr-[7px]"
+                  className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   Store
                 </Link>
-                <i>
-                  {/* <img
-              className="icon-caret group-hover:filter-green"
-              src="assets/images/icons/icon-caret.svg"
-              alt="caret"
-          /> */}
-                </i>
               </li>
               <li className="flex items-center group">
                 <Link
                   aria-current="page"
-                  href="home-6.html#"
-                  className="router-link-active router-link-exact-active hover:text-c-green-300  text-base font-inter menu-link lg:text-lg mr-[7px]"
+                  to={"/locatebin"}
+                  className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   Locate bins
                 </Link>
-                <i>
-                  {/* <img
-                className="icon-caret group-hover:filter-green"
-                src="assets/images/icons/icon-caret.svg"
-                alt="caret"
-              /> */}
-                </i>
               </li>
-              {user?.role !== "COLLECTOR" && (
+              {user?.role !== "COLLECTOR" ? (
                 <li className="flex items-center group">
                   <Link
                     to="/become-a-collector"
@@ -103,54 +91,77 @@ const Header = () => {
                     Become a collector
                   </Link>
                 </li>
+              ) : (
+                <li className="flex items-center group">
+                  <Link
+                    to="/collector-dashboard"
+                    aria-current="page"
+                    className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
+                  >
+                    Collector
+                  </Link>
+                </li>
               )}
-              <li className="flex items-center group">
+
+              {/* <li className="flex items-center group">
                 <Link
                   aria-current="page"
-                  href="home-6.html#"
-                  className="router-link-active router-link-exact-active hover:text-c-green-300  text-base font-inter menu-link lg:text-lg mr-[7px]"
+                  to={"/aboutus"}
+                  className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   About us
                 </Link>
-                <i>
-                  {/* <img
-                className="icon-caret group-hover:filter-green"
-                src="assets/images/icons/icon-caret.svg"
-                alt="caret"
-              /> */}
-                </i>
+              </li> */}
+              <li className="flex items-center group">
+                <Link
+                  to={"/feedbackand-complaint"}
+                  aria-current="page"
+                  className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
+                >
+                  Report an Issue
+                </Link>
               </li>
             </ul>
           </nav>
-          <div className="hidden xl:flex items-center  space-x-5">
+          <div className="hidden xl:flex items-center space-x-5">
             {user?._id && (
               <div className="relative">
                 {/* User profile icon - Click to open dropdown */}
                 <div
                   onClick={() => setMenuDisplay(true)}
-                  className="flex items-center z-10 text-3xl text-c-blur-100 hover:text-c-green-300 cursor-pointer transition-all duration-300"
+                  className="flex items-center z-10  text-c-blur-100 hover:text-c-green-300 cursor-pointer transition-all duration-300"
                 >
-                  <FaUserCircle />
+                  {user?.avatar ? (
+                    <img
+                      src={user?.avatar}
+                      alt="avatar"
+                      className="w-9 h-9 rounded-full mx-auto mb-3 object-cover"
+                    />
+                  ) : (
+                    <div className="w-9 h-9 rounded-full bg-c-green-300 text-white flex items-center justify-center mx-auto  text-sm font-bold uppercase">
+                      {user?.name?.charAt(0) || "?"}
+                    </div>
+                  )}{" "}
                 </div>
 
                 {/* Dropdown Menu with smooth hide effect */}
                 {menuDisplay && (
                   <div
-                    className={`absolute border border-stroke bg-white shadow-md top-full z-50 py-2 grid menu-shadow -translate-x-2 translate-y-2 transition-all duration-300 rounded-[4px] min-[120px]:min-w-[180px] ${
+                    className={`absolute border border-stroke bg-white shadow-md top-full z-50 py-2 grid menu-shadow -translate-x-2 translate-y-2 transition-all duration-300 rounded-[4px] min-w-[10rem] md:min-w-[12rem] lg:min-w-[14rem] xl:min-w-[16rem] ${
                       fadeOut ? "opacity-0 scale-95" : "opacity-100 scale-100"
                     }`}
                   >
-                    <div className="font-chivo transition-all duration-200  py-[8px] px-[22px] flex items-center">
+                    <div className="font-chivo transition-all duration-200 py-[8px] px-[22px] flex items-center">
                       <div className="space-y-1 text-base font-light">
                         👋 Hey,
                         {user?.name && (
-                          <span className="capitalize mb-2  text-black ">
+                          <span className="capitalize mb-2 text-gray-900 ">
                             {user.name}
                           </span>
                         )}
                         <br />
                         {user?.role && (
-                          <span className="lowercase ml-2 text-[14px]  leading-none text-gray-6">
+                          <span className="lowercase ml-2 text-[14px] leading-none text-gray-6">
                             {user.role}
                           </span>
                         )}
@@ -158,7 +169,13 @@ const Header = () => {
                     </div>
                     <hr className="border-[#E8E8E8] pt-3" />
 
-                    <div className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px] hover:bg-gray-2">
+                    <div
+                      onClick={() => {
+                        setOpen(true);
+                        setMenuDisplay(false); // Close dropdown when opening profile
+                      }}
+                      className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px] hover:bg-gray-2 cursor-pointer"
+                    >
                       <svg
                         width={20}
                         height={20}
@@ -171,12 +188,9 @@ const Header = () => {
                           d="M9 .938a3.562 3.562 0 100 7.124A3.562 3.562 0 009 .938zM6.562 4.5a2.437 2.437 0 114.875 0 2.437 2.437 0 01-4.875 0zM9 9.188c-1.735 0-3.334.394-4.518 1.06-1.167.657-2.045 1.652-2.045 2.877v.076c0 .872-.001 1.965.958 2.747.472.384 1.132.657 2.025.838.894.181 2.06.276 3.58.276s2.685-.095 3.58-.276c.893-.18 1.553-.454 2.025-.838.96-.782.958-1.875.957-2.747v-.076c0-1.226-.877-2.22-2.044-2.877-1.184-.666-2.783-1.06-4.518-1.06zm-5.438 3.937c0-.639.467-1.331 1.471-1.896.987-.555 2.388-.916 3.967-.916 1.579 0 2.98.36 3.967.916 1.004.565 1.47 1.258 1.47 1.896 0 .98-.03 1.533-.542 1.95-.278.227-.743.448-1.538.609-.793.16-1.876.254-3.357.254-1.48 0-2.564-.094-3.357-.255-.795-.16-1.26-.381-1.538-.608-.512-.417-.543-.97-.543-1.95z"
                         />
                       </svg>
-                      <Link
-                        to={"/profile"}
-                        className="mr-auto text-[16px] font-light"
-                      >
+                      <div className="mr-auto text-[16px] font-light">
                         View profile
-                      </Link>
+                      </div>
                     </div>
 
                     {user?.role === ROLE.ADMIN ||
@@ -202,7 +216,7 @@ const Header = () => {
                           </svg>
                         ) : (
                           <svg
-                            class="w-6 h-6 text-gray-800"
+                            className="w-6 h-6 text-gray-800"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -211,9 +225,9 @@ const Header = () => {
                             viewBox="0 0 24 24"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                             />
                           </svg>
                         )}
@@ -221,7 +235,7 @@ const Header = () => {
                         <Link
                           to={
                             user?.role === ROLE.ADMIN
-                              ? "/admin/dashboard"
+                              ? "/admin/default"
                               : "/collector-dashboard"
                           }
                           className="mr-auto text-[16px] font-light"
@@ -237,7 +251,7 @@ const Header = () => {
 
                     <div className="p-2 text-base text-[#4B5563]">
                       <button
-                        className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px]  hover:bg-c-green-300 hover:text-white"
+                        className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-[9px] hover:bg-c-green-300 hover:text-white"
                         onClick={handleLogout}
                       >
                         <svg
@@ -267,7 +281,7 @@ const Header = () => {
 
             <div>
               {/* cart icon */}
-              <div className="router-link-active router-link-exact-active flex items-center z-10 relative transition-all duration-200 pr-[10px]  text-3xl text-c-blur-100 hover:text-c-green-300 cursor-pointer">
+              <div className="router-link-active router-link-exact-active flex items-center z-10 relative transition-all duration-200 pr-[10px] text-3xl text-c-blur-100 hover:text-c-green-300 cursor-pointer">
                 <FaCartShopping />
                 <div className="bg-c-green-300 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-1">
                   <p className="text-sm">0</p>
@@ -275,22 +289,7 @@ const Header = () => {
               </div>
             </div>
 
-            {/* <button type="button">
-              <Link
-                to="/login"
-                aria-current="page"
-                className="router-link-active router-link-exact-active flex items-center z-10 relative transition-all duration-200 group px-[22px] py-[15px] lg:px-[32px] lg:py-[22px] rounded-[50px] bg-gray-100 text-gray-900 hover:bg-c-green-300"
-              >
-                <span className="block text-inherit w-full h-full rounded-[50px] text-lg font-bold font-chivo group-hover:text-white">
-                  Log in
-                </span>
-                <div className="ml-[7px] text-base text-black group-hover:text-white">
-                  <FaArrowRightLong />
-                </div>
-              </Link>
-            </button> */}
-
-            {!user?._id && ( // Hide button if user._id exists
+            {!user?._id && (
               <button type="button">
                 <Link
                   to="/login"
@@ -300,7 +299,7 @@ const Header = () => {
                   <span className="block text-inherit w-full h-full rounded-[50px] text-lg font-bold font-chivo group-hover:text-white">
                     Log in
                   </span>
-                  <div className="ml-[7px] text-base text-black group-hover:text-white">
+                  <div className="ml-[7px] text-base text-gray-900  group-hover:text-white">
                     <FaArrowRightLong />
                   </div>
                 </Link>
@@ -308,15 +307,21 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="burger-icon burger-icon-white menu__icon">
-          <span className="burger-icon-top"></span>
-          <span className="burger-icon-mid"></span>
-          <span className="burger-icon-bottom"></span>
-        </div>
-
-        <div className="overlay"></div>
       </header>
+
+      <div
+        className="header-spacer"
+        style={{
+          height:
+            "calc(15px + 15px + 50px)" /* Adjust based on your header height */,
+          marginBottom: "1rem",
+        }}
+      ></div>
+
+      {/* Render Profile modal conditionally */}
+      {open && <Profile open={open} setOpen={setOpen} />}
     </div>
   );
 };
+
 export default Header;
