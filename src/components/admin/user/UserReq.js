@@ -49,7 +49,7 @@ const UserReq = () => {
     address: "",
     wasteType: [],
     scheduledAt: "",
-    email:"",
+    email: "",
   });
 
   // Pagination state
@@ -104,7 +104,7 @@ const UserReq = () => {
       title: "",
       description: "",
       uemail: user.email,
-      phone:user.phone,
+      phone: user.phone,
       city: user.city,
       wasteType: user.wasteType || [],
       address: user.address,
@@ -222,18 +222,18 @@ const UserReq = () => {
         address: taskFormData.address,
         wasteType: taskFormData.wasteType,
         assignedDate: taskFormData.scheduledAt, // Map scheduledAt → assignedDate
-        email: taskFormData.collectorEmail,     // Collector's email for lookup
+        email: taskFormData.collectorEmail, // Collector's email for lookup
       };
-  
+
       const response = await fetch(SummaryApi.assign_task.url, {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
-          "credentials": "include" 
+          credentials: "include",
         },
         body: JSON.stringify(taskData),
       });
-  
+
       const result = await response.json();
 
       if (result.success) {
@@ -249,8 +249,7 @@ const UserReq = () => {
   };
 
   // Handle collector email change
-  const handleCollectorEmailChange = (e) => {
-  };
+  const handleCollectorEmailChange = (e) => {};
 
   // Define table columns
   const columns = [
@@ -330,21 +329,21 @@ const UserReq = () => {
           <div className="flex items-center space-x-2 text-sm">
             <button
               onClick={() => handleEdit(userData)}
-              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
+              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 hover:text-green-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
               aria-label="Edit"
             >
               <MdEdit className="w-5 h-5" />
             </button>
             <button
               onClick={() => handleDelete(userData)}
-              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
+              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 hover:text-red-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
               aria-label="Delete"
             >
               <MdDelete className="w-5 h-5" />
             </button>
             <button
               onClick={() => handleTask(userData)}
-              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-blue-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
+              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 hover:text-bluer-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
               aria-label="Assign Task"
             >
               <FaShare className="w-5 h-5" />
@@ -495,12 +494,12 @@ const UserReq = () => {
       {/* Task Modal */}
       {isTaskModalOpen && (
         <CreateTaskModal
-        isOpen={isTaskModalOpen}
-        onClose={() => setIsTaskModalOpen(false)}
-        onSubmit={handleCreateTask}
-        formData={taskFormData}
-        onChange={handleTaskFormChange}
-      />
+          isOpen={isTaskModalOpen}
+          onClose={() => setIsTaskModalOpen(false)}
+          onSubmit={handleCreateTask}
+          formData={taskFormData}
+          onChange={handleTaskFormChange}
+        />
       )}
     </Card>
   );

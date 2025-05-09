@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
-import ROLE from "../common/role";
+import ROLE from "../common/mainRoles";
 import Profile from "./Profile";
 
 const Header = () => {
@@ -50,8 +50,8 @@ const Header = () => {
   };
 
   return (
-    <div className="wrapper mx-auto text-gray-900 font-medium bg-white">
-      <header className="h-auto full-width relative py-[15px] first-letter:lg:py-[26px]">
+    <div className="wrapper mx-auto text-gray-900 font-medium">
+      <header className="h-auto w-full fixed top-0 left-0 bg-white/10 p-2 backdrop-blur-xl z-50  py-[15px] first-letter:lg:py-[26px]">
         <div className="px-[12px] md:px-[36px] xl:px-0 mt-0 flex items-center justify-between mx-auto relative max-w-[1320px]">
           <Link to={"/"} className="flex">
             <img
@@ -299,6 +299,15 @@ const Header = () => {
           </div>
         </div>
       </header>
+
+      <div
+        className="header-spacer"
+        style={{
+          height:
+            "calc(15px + 15px + 50px)" /* Adjust based on your header height */,
+          marginBottom: "1rem",
+        }}
+      ></div>
 
       {/* Render Profile modal conditionally */}
       {open && <Profile open={open} setOpen={setOpen} />}

@@ -331,13 +331,13 @@ const Home = () => {
         </div>
       </div>
       {/* find your nearest bin */}
-      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-300/50 branding">
+      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-600/20 branding">
         {/* Left Section - Text Content */}
         <div className="p-5 md:p-16 lg:w-1/2">
           <h2 className="font-bold font-chivo text-2xl  leading-[32px] md:text-4xl mb-8">
             Find Your Nearest Bin
           </h2>
-          <p className="text-lg text-gray-600 mb-10">
+          <p className="text-lg text-gray-700 mb-10">
             Locate your closest collection point with just a few clicks. Our
             interactive map helps you find bins that accept your specific items,
             making recycling convenient and efficient.
@@ -346,13 +346,13 @@ const Home = () => {
           {/* Learn More Button */}
           <Link
             to={"#"}
-            className="flex items-center z-10 relative transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-white text-gray-900 hover:bg-gray-900 hover:text-white w-fit shadow-md"
+            className="flex items-center z-10 relative transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-white text-gray-900 hover:bg-green-600 hover:text-white w-fit shadow-md"
           >
             <span className="block text-lg font-semibold font-chivo">
               Get Start
             </span>
             <img
-              className="ml-2 w-3 transition group-hover:invert"
+              className="ml-2 "
               src="/assets/images/icons/icon-right.svg"
               alt="arrow right icon"
               width={12}
@@ -370,13 +370,7 @@ const Home = () => {
             width={600}
             height={400}
           />
-          <img
-            className="absolute top-0 right-0"
-            src="/assets/images/icons/pattern-3.svg"
-            alt="pattern"
-            width={150}
-            height={150}
-          />
+          
 
           {/* Play Button */}
           {/* <button className="rounded-full bg-white grid place-items-center absolute w-[135px] h-[135px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 shadow-lg">
@@ -391,9 +385,9 @@ const Home = () => {
       </div>
       {/* what our user say! */}
       <div className="px-3 md:px-9 xl:px-0 mt-16  mx-auto relative max-w-[1320px]">
-        <div className="flex items-center justify-between mb-8 md:mb-20">
+        <div className="flex items-center justify-between mb-8 md:mb-12">
           <div>
-            <h2 className="text-gray-900 font-bold text-2xl md:text-4xl lg:text-5xl mb-5">
+            <h2 className="text-gray-900 font-bold text-2xl md:text-4xl lg:text-5xl mb-3">
               Our Happy Customers
             </h2>
             <p className="text-gray-600">

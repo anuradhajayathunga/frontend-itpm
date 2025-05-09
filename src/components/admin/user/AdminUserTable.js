@@ -120,7 +120,7 @@ const UserTableWithReactTable = () => {
         return (
           <Card className="flex items-center space-x-4 text-sm">
             <button
-              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-c-green-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
+              className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 hover:text-c-green-600 rounded-lg focus:outline-none focus:shadow-outline-gray hover:scale-110"
               aria-label="Edit"
               onClick={() => handleEditUser(userData)}
             >

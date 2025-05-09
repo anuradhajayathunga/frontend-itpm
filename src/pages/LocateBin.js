@@ -9,6 +9,14 @@ import { toast } from "react-toastify";
 import uploadImage from "../helpers/uploadImage";
 import { MdDelete } from "react-icons/md";
 import SummaryApi from "../common";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Calendar,
+  Clock,
+  CheckSquare,
+} from "lucide-react";
 
 const LocateBin = () => {
   const user = useSelector((state) => state?.user?.user);
@@ -168,7 +176,7 @@ const LocateBin = () => {
   return (
     <div>
       <Header />
-      {user?._id && (
+      {/* {user?._id && ( */}
         <div
           id="collect-form"
           className=" items-center justify-between mx-auto relative max-w-[1320px]"
@@ -179,63 +187,62 @@ const LocateBin = () => {
                 <h2 className="font-bold font-chivo mx-auto text-[35px] leading-[44px] md:text-[46px] md:leading-[52px] lg:text-[55px] text-green-500 mb-5 md:mb-[30px] max-w-[1500px]">
                   Find Your Nearest Bin
                 </h2>
-                <p className="text-gray-800 text-center mx-auto mb-[10px] md:w-[55ch]">
+                {/* <p className="text-gray-800 text-center mx-auto mb-[10px] md:w-[55ch]">
                   Locate your closest collection point with just a few clicks.
                   Our interactive map helps you find bins that accept your
                   specific items, making recycling convenient and efficient.
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="bg-gray-100 relative p-[40px] md:pt-[91px] md:pr-[98px] md:pb-[86px] md:pl-[92px] mt-[10px] rounded-[58px]">
               <div className="mx-auto relative max-w-[1320px]">
                 <img
-                  className="absolute right-[-20px] max-w-[129px] top-[-150px]"
+                  className="absolute right-[-20px] max-w-[129px] top-[-60px]"
                   src="assets/images/mail.png"
                   alt=""
                 />
-                {/* <p className="text-capitalized text-gray-700 uppercase tracking-[2px] mb-[15px]">
+                <p className="text-capitalized text-gray-700 uppercase tracking-[2px] mb-[15px]">
                   Quickly Locate the Right Bin Near You.
                 </p>
                 <h2 className="font-bold font-chivo text-[20px] leading-[30px] md:text-heading-3 mb-[22px]">
                   Easily discover the nearest recycling collection points
                   tailored to your needs.
-                </h2> */}
+                </h2>
                 <p className="text-text text-gray-600 mb-[30px] md:mb-[60px]">
                   {/* Earn money while helping the environment. Become a collector and
                 be part of a sustainable future! */}
                 </p>
                 <div className="flex flex-col gap-8 mb-[15px] md:mb-[25px] lg:flex-row lg:gap-[50px] xl:gap-[2px]">
                   {/* Left Side - Google Map */}
-                  <div className="lg:w-1/3 w-full rounded-xl p-6">
-                    <h3 className="font-semibold text-lg mb-4">Find Us Here</h3>
-                    <div className="responsive-map mb-4">
-                      {/* <iframe
-      src="https://maps.google.com/maps?q=123%20Green%20Street,%20EcoCity&t=&z=13&ie=UTF8&iwloc=&output=embed"
-      title="EcoBin Location"
-      frameBorder="0"
-      marginHeight="0"
-      marginWidth="0"
-    ></iframe> */}
+                  <div className="relative lg:w-1/2 mr-4">
+                    {/* <h3 className="font-semibold text-xl mb-0 text-green-700">
+                      Find Us Here
+                    </h3> */}
+                    <div className="mb-6 rounded-lg overflow-hidden ">
                       <img
-            className="h-auto w-full object-cover"
-            src="/assets/hero_geocoding_api_720 1.png"
-            alt="Agon"
-            width={600}
-            height={400}
-          />
+                        className="h-full w-full object-cover mb-3"
+                        src="/assets/hero_geocoding_api_720 1.png"
+                        alt="Agon"
+                        width={600}
+                        height={400}
+                      />
+                      <div className="space-y-3 mt-4">
+                        <p className="text-capitalized text-gray-700  tracking-tight flex items-center">
+                          <MapPin className="w-5 h-5 mr-2 text-green-600" />
+                          123 Green Street, EcoCity, Earth
+                        </p>
+                        <p className="text-capitalized text-gray-700  tracking-tight  flex items-center">
+                          <Phone className="w-5 h-5 mr-2 text-green-600" />
+                          +(123)-456-7890
+                        </p>
+                        <p className="text-capitalized text-gray-700  tracking-tight  flex items-center">
+                          <Mail className="w-5 h-5 mr-2 text-green-600" />
+                          info@ecobin.com
+                        </p>
+                      </div>
                     </div>
-
-                    <p className="text-gray-700 mb-2">
-                      123 Green Street, EcoCity, Earth
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                      Manchester, Kentucky 39495
-                    </p>
-                    <p className="text-gray-700 underline mb-2">
-                      +(123)-456-7890
-                    </p>
-                    <p className="text-gray-700 underline">info@ecobin.com</p>
                   </div>
+
                   <form className="flex-1" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                       {user?._id && (
@@ -320,7 +327,7 @@ const LocateBin = () => {
                       />
                     </div>
                     <div className="mb-6">
-                      <label className="block font-medium mb-2">
+                      <label className="block font-medium mb-2 px-[10px]">
                         Waste Types:
                       </label>
                       <div className="flex flex-wrap gap-4">
@@ -338,7 +345,7 @@ const LocateBin = () => {
                               className="accent-green-600 outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
                             />
 
-                            <span>{type}</span>
+                            <span className="px-[10px] text-gray-400">{type}</span>
                           </label>
                         ))}
                       </div>
@@ -365,7 +372,7 @@ const LocateBin = () => {
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
 
       <Footer />
     </div>
