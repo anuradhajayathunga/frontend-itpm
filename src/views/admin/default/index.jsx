@@ -5,18 +5,127 @@ import PieChartCard from "./components/PieChartCard";
 import { IoMdHome } from "react-icons/io";
 import { IoDocuments } from "react-icons/io5";
 import { MdBarChart, MdDashboard } from "react-icons/md";
-
 import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
-
 import Widget from "../../../components/widget/Widget";
 import CheckTable from "./components/CheckTable";
 // import ComplexTable from "views/admin/default/components/ComplexTable";
 import DailyTraffic from "./components/DailyTraffic";
 import TaskCard from "./components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
+import { useSelector } from "react-redux";
 // import tableDataComplex from "./variables/tableDataComplex.json";
+import summaryApi from "../../../common";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+  const [allUser, setAllUser] = useState([]);
+  const [allCollector, setAllCollector] = useState([]);
+  const [allFeedback, setAllFeedback] = useState([]);
+    const [allEmail, setAllEmail] = useState([]);
+
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(summaryApi.AllUsers.url);
+      const dataResponse = await response.json();
+
+      console.log("user data:", dataResponse);
+
+      const users = dataResponse?.data || [];
+      setAllUser(users);
+
+      // // Calculate counts
+      // const activePackages = packages.filter(
+      //   (pack) => pack?.status === STATUS.Active
+      // );
+      // const inactivePackages = packages.filter(
+      //   (pack) => pack?.status !== STATUS.Active
+      // );
+
+      // setActivePackageCount(activePackages.length);
+      // setInactivePackageCount(inactivePackages.length);
+    } catch (error) {
+      console.error("Error fetching all packages:", error);
+    }
+  };
+
+  const fetchcollector = async () => {
+    try {
+      const response = await fetch(summaryApi.allCollector.url);
+      const dataResponse = await response.json();
+
+      console.log("collector data:", dataResponse);
+
+      const collector = dataResponse?.data || [];
+      setAllCollector(collector);
+
+      // // Calculate counts
+      // const activePackages = packages.filter(
+      //   (pack) => pack?.status === STATUS.Active
+      // );
+      // const inactivePackages = packages.filter(
+      //   (pack) => pack?.status !== STATUS.Active
+      // );
+
+      // setActivePackageCount(activePackages.length);
+      // setInactivePackageCount(inactivePackages.length);
+    } catch (error) {
+      console.error("Error fetching all packages:", error);
+    }
+  };
+  const fetchfeedback = async () => {
+    try {
+      const response = await fetch(summaryApi.getAllFeedbacks.url);
+      const dataResponse = await response.json();
+
+      console.log("feedback data:", dataResponse);
+
+      const feedback = dataResponse?.data;
+      setAllFeedback(feedback);
+
+      // // Calculate counts
+      // const activePackages = packages.filter(
+      //   (pack) => pack?.status === STATUS.Active
+      // );
+      // const inactivePackages = packages.filter(
+      //   (pack) => pack?.status !== STATUS.Active
+      // );
+
+      // setActivePackageCount(activePackages.length);
+      // setInactivePackageCount(inactivePackages.length);
+    } catch (error) {
+      console.error("Error fetching all packages:", error);
+    }
+  };
+  const fetchEmails = async () => {
+    try {
+      const response = await fetch(summaryApi.get_send_message.url);
+      const dataResponse = await response.json();
+
+      console.log("email data:", dataResponse);
+
+      const emails = dataResponse?.data;
+      setAllEmail(emails);
+
+      // // Calculate counts
+      // const activePackages = packages.filter(
+      //   (pack) => pack?.status === STATUS.Active
+      // );
+      // const inactivePackages = packages.filter(
+      //   (pack) => pack?.status !== STATUS.Active
+      // );
+
+      // setActivePackageCount(activePackages.length);
+      // setInactivePackageCount(inactivePackages.length);
+    } catch (error) {
+      console.error("Error fetching all packages:", error);
+    }
+  };
+  useEffect(() => {
+    fetchUser();
+    fetchcollector();
+  }, []);
+
   return (
     <div>
       {/* Card widget */}
@@ -24,23 +133,23 @@ const Dashboard = () => {
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
-          title={"Earnings"}
-          subtitle={"$340.5"}
+          title={"users"}
+          subtitle={allUser.length}
         />
         <Widget
           icon={<IoDocuments className="h-6 w-6" />}
-          title={"Spend this month"}
-          subtitle={"$642.39"}
+          title={"Collector"}
+          subtitle={allCollector.length}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
-          title={"Sales"}
-          subtitle={"$574.34"}
+          title={"NO of Feedback"}
+          subtitle={allFeedback.length}
         />
         <Widget
           icon={<MdDashboard className="h-6 w-6" />}
-          title={"Your Balance"}
-          subtitle={"$1,000"}
+          title={"Your Emails"}
+          subtitle={allEmail.length}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
@@ -59,7 +168,7 @@ const Dashboard = () => {
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 ">
         {/* <TotalSpent /> */}
         <PieChartCard />
-         <DailyTraffic />
+        <DailyTraffic />
         {/* <WeeklyRevenue /> */}
       </div>
 
