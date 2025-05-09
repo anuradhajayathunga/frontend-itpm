@@ -39,13 +39,13 @@ const CreateTaskModal = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/10 p-2 backdrop-blur-md">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden transform transition-all">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-800 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-4 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center">
             <FiCalendar className="mr-2" /> Assign New Task
           </h2>
           <button
             onClick={onClose}
-            className="text-white hover:text-red-200 transition-colors p-1 rounded-full hover:bg-white hover:bg-opacity-20"
+            className="text-white hover:text-red-600 transition-colors p-1 rounded-full hover:bg-white hover:bg-opacity-20"
           >
             <FiX size={24} />
           </button>
@@ -244,7 +244,7 @@ const CreateTaskModal = ({
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white font-medium rounded-lg hover:from-green-700 hover:to-green-800 transition-colors shadow-md"
+              className="px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-lg hover:from-green-700 hover:to-green-800 transition-colors shadow-md"
             >
               Assign Task
             </button>

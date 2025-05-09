@@ -55,7 +55,7 @@ const Header = () => {
         <div className="px-[12px] md:px-[36px] xl:px-0 mt-0 flex items-center justify-between mx-auto relative max-w-[1320px]">
           <Link to={"/"} className="flex">
             <img
-              className="logo z-50 w-[90px] md:w-[101px] lg:w-[122px] xl:w-[138px]"
+              className="logo z-50 w-[90px] md:w-[100px] lg:w-[120px] xl:w-[138px]"
               src="/assets/Logo/Logo.svg"
               alt="Company logo"
             />
@@ -103,13 +103,22 @@ const Header = () => {
                 </li>
               )}
 
-              <li className="flex items-center group">
+              {/* <li className="flex items-center group">
                 <Link
                   aria-current="page"
                   to={"/aboutus"}
                   className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
                 >
                   About us
+                </Link>
+              </li> */}
+              <li className="flex items-center group">
+                <Link
+                  to={"/feedbackand-complaint"}
+                  aria-current="page"
+                  className="router-link-active router-link-exact-active hover:text-c-green-300 text-base font-inter menu-link lg:text-lg mr-[7px]"
+                >
+                  Report an Issue
                 </Link>
               </li>
             </ul>
@@ -146,7 +155,7 @@ const Header = () => {
                       <div className="space-y-1 text-base font-light">
                         👋 Hey,
                         {user?.name && (
-                          <span className="capitalize mb-2 text-black">
+                          <span className="capitalize mb-2 text-gray-900 ">
                             {user.name}
                           </span>
                         )}
@@ -290,7 +299,7 @@ const Header = () => {
                   <span className="block text-inherit w-full h-full rounded-[50px] text-lg font-bold font-chivo group-hover:text-white">
                     Log in
                   </span>
-                  <div className="ml-[7px] text-base text-black group-hover:text-white">
+                  <div className="ml-[7px] text-base text-gray-900  group-hover:text-white">
                     <FaArrowRightLong />
                   </div>
                 </Link>

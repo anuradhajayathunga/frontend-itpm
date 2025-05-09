@@ -115,7 +115,7 @@ const Home = () => {
         <div className="px-[12px] md:px-[40px] xl:px-[60px] mt-0 z-10 relative py-[100px] lg:mx-[200px] lg:py-[120px] max-w-[850px] lg:flex lg:items-center">
           {/* Left Side - Text Content */}
           <div className="flex-1">
-            <h1 className="text-c-white-300 font-montserrat font-black lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
+            <h1 className="text-c-white-300 font-montserrat font-black  lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
               Turn your waste into value with the
               <span className="text-c-green-300"> EcoBin </span>Solution!
             </h1>
@@ -134,11 +134,11 @@ const Home = () => {
                     Get Start
                   </span>
                   {/* <img
-                    className="ml-[7px] w-[12px] filter-white group-hover:filter-black"
+                    className="ml-[7px] w-[12px] filter-white group-hover:filter-gray-900 "
                     src="assets/images/icons/icon-right.svg"
                     alt="arrow right icon"
                   /> */}
-                  <div className="ml-[7px] text-base text-white group-hover:text-black">
+                  <div className="ml-[7px] text-base text-white group-hover:text-gray-900 ">
                     <FaArrowRightLong />
                   </div>
                 </Link>
@@ -196,7 +196,7 @@ const Home = () => {
 
         {/* Optional: Video Modal */}
         {isVideoPlaying && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-900  bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg">
               <button
                 className="absolute top-2 right-2 text-gray-700 text-lg"
@@ -331,7 +331,7 @@ const Home = () => {
         </div>
       </div>
       {/* find your nearest bin */}
-      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-600/20 branding">
+      <div className="tab-content mt-24 lg:gap-8 lg:flex  flex items-center justify-between mx-auto relative max-w-[1320px] bg-c-green-600/20 limeing">
         {/* Left Section - Text Content */}
         <div className="p-5 md:p-16 lg:w-1/2">
           <h2 className="font-bold font-chivo text-2xl  leading-[32px] md:text-4xl mb-8">
@@ -370,7 +370,6 @@ const Home = () => {
             width={600}
             height={400}
           />
-          
 
           {/* Play Button */}
           {/* <button className="rounded-full bg-white grid place-items-center absolute w-[135px] h-[135px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 shadow-lg">
@@ -391,7 +390,7 @@ const Home = () => {
               Our Happy Customers
             </h2>
             <p className="text-gray-600">
-              Know about our clients, we are a worldwide corporate brand
+              Know about our clients, we are a worldwide corporate lime
             </p>
           </div>
           <div className="flex items-center gap-5">

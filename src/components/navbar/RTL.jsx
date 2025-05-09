@@ -13,7 +13,7 @@ import {
 import avatar from "assets/img/avatars/avatar4.png";
 
 const Navbar = (props) => {
-  const { onOpenSidenav, brandText } = props;
+  const { onOpenSidenav, limeText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
   return (
@@ -34,7 +34,7 @@ const Navbar = (props) => {
             className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             to="#"
           >
-            {brandText}
+            {limeText}
           </Link>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
@@ -42,7 +42,7 @@ const Navbar = (props) => {
             to="#"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
           >
-            {brandText}
+            {limeText}
           </Link>
         </p>
       </div>
@@ -84,7 +84,7 @@ const Navbar = (props) => {
               </div>
 
               <button className="flex w-full items-center">
-                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-gradient-to-b from-brandLinear to-brand-500 py-4 text-2xl text-white">
+                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-brand-900 from-limeLinear to-lime-500 py-4 text-2xl text-white">
                   <BsArrowBarUp />
                 </div>
                 <div className="flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm ms-2">
@@ -98,7 +98,7 @@ const Navbar = (props) => {
               </button>
 
               <button className="flex w-full items-center">
-                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-gradient-to-b from-brandLinear to-brand-500 py-4 text-2xl text-white">
+                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-brand-900 from-limeLinear to-lime-500 py-4 text-2xl text-white">
                   <BsArrowBarUp />
                 </div>
                 <div className="flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm ms-2">
@@ -112,7 +112,9 @@ const Navbar = (props) => {
               </button>
             </div>
           }
-          classNames={"py-2 top-4 left-0 -start-[230px] md:-start-[440px] w-max"}
+          classNames={
+            "py-2 top-4 left-0 -start-[230px] md:-start-[440px] w-max"
+          }
         />
         {/* start Horizon PRO */}
         <Dropdown
@@ -134,7 +136,7 @@ const Navbar = (props) => {
               <a
                 target="blank"
                 href="https://horizon-ui.com/pro?ref=live-free-tailwind-react"
-                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200"
+                className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-lime-500 py-[11px] font-bold text-white transition duration-200 hover:bg-lime-600 hover:text-white active:bg-lime-700 dark:bg-lime-400 dark:hover:bg-lime-300 dark:active:bg-lime-200"
               >
                 Buy Horizon UI PRO
               </a>
@@ -148,13 +150,15 @@ const Navbar = (props) => {
               <a
                 target="blank"
                 href="https://horizon-ui.com/?ref=live-free-tailwind-react"
-                className="hover:bg-black px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 dark:text-white dark:hover:text-white"
+                className="hover:bg-gray-900  px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 dark:text-white dark:hover:text-white"
               >
                 Try Horizon Free
               </a>
             </div>
           }
-          classNames={"py-2 top-6 left-0 -start-[250px] md:-start-[330px] w-max"}
+          classNames={
+            "py-2 top-6 left-0 -start-[250px] md:-start-[330px] w-max"
+          }
           animation="origin-[75%_0%] md:origin-top-end transition-all duration-300 ease-in-out"
         />
         <div

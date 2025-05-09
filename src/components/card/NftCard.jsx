@@ -17,13 +17,13 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
           />
           <button
             onClick={() => setHeart(!heart)}
-            className="absolute top-3 right-3 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer"
+            className="absolute top-3 right-3 flex items-center justify-center rounded-full bg-white p-2 text-lime-500 hover:cursor-pointer"
           >
             <div className="flex h-full w-full items-center justify-center rounded-full text-xl hover:bg-gray-50 dark:text-navy-900">
               {heart ? (
                 <IoHeartOutline />
               ) : (
-                <IoHeart className="text-brand-500" />
+                <IoHeart className="text-lime-500" />
               )}
             </div>
           </button>
@@ -61,13 +61,13 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
 
         <div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 3xl:items-center 3xl:justify-between">
           <div className="flex">
-            <p className="mb-2 text-sm font-bold text-brand-500 dark:text-white">
+            <p className="mb-2 text-sm font-bold text-lime-500 dark:text-white">
               Current Bid: {price} <span>ETH</span>
             </p>
           </div>
           <button
             href=""
-            className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
+            className="linear rounded-[20px] bg-lime-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-lime-800 active:bg-lime-700 dark:bg-lime-400 dark:hover:bg-lime-300 dark:active:opacity-90"
           >
             Place Bid
           </button>

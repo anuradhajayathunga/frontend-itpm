@@ -94,7 +94,7 @@ const SendEmailMessage = ({ onClose, emailData, fetchData }) => {
   return (
     <div>
       <div className="fixed top-0 bottom-0 left-0 right-0 pt-12 pl-80 w-full h-full z-10 flex justify-center items-center bg-green-200 bg-opacity-70">
-        <div className="text-black p-4 rounded w-full max-w-2xl h-full max-h-[90%] overflow-hidden">
+        <div className="text-gray-900  p-4 rounded w-full max-w-2xl h-full max-h-[90%] overflow-hidden">
           <div className="w-full max-w-md">
             <form
               className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"

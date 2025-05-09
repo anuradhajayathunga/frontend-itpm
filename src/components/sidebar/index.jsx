@@ -9,7 +9,7 @@ import routes from "../../routes.js";
 const Sidebar = ({ open, onClose }) => {
   return (
     <div
-      className={`duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white  pb-10 shadow-lg transition-all dark:bg-gray-900 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
+      className={`duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white  pb-10 shadow-lg transition-all dark:bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 ${
         open ? "translate-x-0" : "-translate-x-full"
       }`}
     >

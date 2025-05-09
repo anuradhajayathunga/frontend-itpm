@@ -151,7 +151,7 @@ const BecomeACollector = () => {
             <span className="font-chivo inline-block bg-c-green-300/20 text-c-white-100 py-3 px-6 rounded-full text-sm leading-4 mb-2">
               What We Do, What You Get
             </span>
-            <h1 className="text-c-white-300 font-montserrat font-black lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
+            <h1 className="text-c-white-300 font-montserrat black  lg:text-[70px] md:text-[50px] md:leading-[70px] sm:text-[40px] sm:leading-[58px] text-[40px] leading-[48px] mb-[10px]">
               Join <span className="text-c-green-300">EcoBin</span> <br /> as a
               Collector!{" "}
             </h1>
@@ -166,7 +166,7 @@ const BecomeACollector = () => {
                 to="collect-form"
                 smooth={true}
                 duration={500}
-                className="flex items-center transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-c-green-300 text-white hover:bg-gray-100 hover:text-black text-lg font-chivo font-semibold tracking-wide mr-6"
+                className="flex items-center transition-all duration-200 group px-6 py-4 lg:px-8 lg:py-5 rounded-full bg-c-green-300 text-white hover:bg-gray-100 hover:text-gray-900  text-lg font-chivo font-semibold tracking-wide mr-6"
               >
                 Join Our Team
                 {/* <img
@@ -174,9 +174,9 @@ const BecomeACollector = () => {
                   width={12}
                   height={12}
                   alt="arrow right icon"
-                  className="ml-2 group-hover:filter-black"
+                  className="ml-2 group-hover:filter-gray-900 "
                 /> */}
-                <div className="ml-[7px] text-base text-white group-hover:text-black">
+                <div className="ml-[7px] text-base text-white group-hover:text-gray-900 ">
                   <FaArrowRightLong />
                 </div>
               </ScrollLink>
@@ -193,7 +193,7 @@ const BecomeACollector = () => {
                   alt="arrow right icon"
                   className="ml-2"
                 /> */}
-                <div className="ml-[7px] text-base text-black group-hover:text-white">
+                <div className="ml-[7px] text-base text-gray-900  group-hover:text-white">
                   <FaArrowRightLong />
                 </div>
               </Link>

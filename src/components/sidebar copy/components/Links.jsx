@@ -32,7 +32,7 @@ export function SidebarLinks(props) {
                 <span
                   className={`${
                     activeRoute(route.path) === true
-                      ? "font-bold text-brand-500 dark:text-white"
+                      ? "font-bold text-lime-500 dark:text-white"
                       : "font-medium text-gray-600"
                   }`}
                 >
@@ -49,7 +49,7 @@ export function SidebarLinks(props) {
                 </p>
               </li>
               {activeRoute(route.path) ? (
-                <div class="absolute right-0 top-px h-9 w-1 rounded-lg bg-brand-500 dark:bg-brand-400" />
+                <div class="absolute right-0 top-px h-9 w-1 rounded-lg bg-lime-500 dark:bg-lime-400" />
               ) : null}
             </div>
           </Link>
@@ -57,7 +57,7 @@ export function SidebarLinks(props) {
       }
     });
   };
-  // BRAND
+  // lime
   return createLinks(routes);
 }
 

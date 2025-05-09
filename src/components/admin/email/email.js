@@ -45,7 +45,7 @@ const Email = () => {
               <h4 className="text-lg font-bold text-navy-700 dark:text-white">
                 Send Message
               </h4>
-              {/* <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
+              {/* <button className="linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-lime-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:active:bg-white/20">
               See all
             </button> */}
             </div>

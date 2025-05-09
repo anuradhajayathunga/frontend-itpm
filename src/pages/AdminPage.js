@@ -71,7 +71,7 @@ export default function AdminPage(props) {
             <Navbar
               onOpenSidenav={() => setOpen(true)}
               logoText={"Horizon UI Tailwind React"}
-              brandText={currentRoute}
+              limeText={currentRoute}
               secondary={getActiveNavbar(routes)}
               {...rest}
             />

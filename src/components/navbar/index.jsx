@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 const Navbar = (props) => {
   const user = useSelector((state) => state?.user?.user);
 
-  const { onOpenSidenav, brandText } = props;
+  const { onOpenSidenav, limeText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
   return (
@@ -37,7 +37,7 @@ const Navbar = (props) => {
             className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             to="#"
           >
-            {brandText}
+            {limeText}
           </Link>
         </div>
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
@@ -45,7 +45,7 @@ const Navbar = (props) => {
             to="#"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
           >
-            {brandText}
+            {limeText}
           </Link>
         </p>
       </div>
@@ -87,7 +87,7 @@ const Navbar = (props) => {
               </div>
 
               <button className="flex w-full items-center">
-                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-gradient-to-b from-brandLinear to-brand-500 py-4 text-2xl text-white">
+                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-brand-900 from-limeLinear to-lime-500 py-4 text-2xl text-white">
                   <BsArrowBarUp />
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
@@ -101,7 +101,7 @@ const Navbar = (props) => {
               </button>
 
               <button className="flex w-full items-center">
-                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-gradient-to-b from-brandLinear to-brand-500 py-4 text-2xl text-white">
+                <div className="flex h-full w-[85px] items-center justify-center rounded-xl bg-brand-900 from-limeLinear to-lime-500 py-4 text-2xl text-white">
                   <BsArrowBarUp />
                 </div>
                 <div className="ml-2 flex h-full w-full flex-col justify-center rounded-lg px-1 text-sm">
@@ -158,7 +158,7 @@ const Navbar = (props) => {
 
               <div className="flex flex-col p-4">
                 <Link
-                to={"/admin/profile"}
+                  to={"/admin/profile"}
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   Profile Settings
