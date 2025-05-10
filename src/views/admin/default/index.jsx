@@ -22,185 +22,147 @@ const Dashboard = () => {
   const [allCollector, setAllCollector] = useState([]);
   const [allFeedback, setAllFeedback] = useState([]);
   const [allEmail, setAllEmail] = useState([]);
+  const [allReq, setAllReq] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
     try {
       const response = await fetch(summaryApi.AllUsers.url);
       const dataResponse = await response.json();
-
       console.log("user data:", dataResponse);
-
       const users = dataResponse?.data || [];
       setAllUser(users);
-
-      // // Calculate counts
-      // const activePackages = packages.filter(
-      //   (pack) => pack?.status === STATUS.Active
-      // );
-      // const inactivePackages = packages.filter(
-      //   (pack) => pack?.status !== STATUS.Active
-      // );
-
-      // setActivePackageCount(activePackages.length);
-      // setInactivePackageCount(inactivePackages.length);
     } catch (error) {
-      console.error("Error fetching all packages:", error);
+      console.error("Error fetching all users:", error);
     }
   };
 
-  const fetchcollector = async () => {
+  const fetchCollector = async () => {
     try {
       const response = await fetch(summaryApi.allCollector.url);
       const dataResponse = await response.json();
-
       console.log("collector data:", dataResponse);
-
       const collector = dataResponse?.data || [];
       setAllCollector(collector);
-
-      // // Calculate counts
-      // const activePackages = packages.filter(
-      //   (pack) => pack?.status === STATUS.Active
-      // );
-      // const inactivePackages = packages.filter(
-      //   (pack) => pack?.status !== STATUS.Active
-      // );
-
-      // setActivePackageCount(activePackages.length);
-      // setInactivePackageCount(inactivePackages.length);
     } catch (error) {
-      console.error("Error fetching all packages:", error);
+      console.error("Error fetching all collectors:", error);
     }
   };
-  const fetchfeedback = async () => {
+
+  const fetchFeedback = async () => {
     try {
-      const response = await fetch(summaryApi.getAllFeedbacks.url);
+      const response = await fetch(summaryApi.getAllFeedbacks.url, {
+        method: summaryApi.getAllFeedbacks.method,
+      });
       const dataResponse = await response.json();
-
       console.log("feedback data:", dataResponse);
-
-      const feedback = dataResponse?.data;
+      const feedback = dataResponse?.data || [];
       setAllFeedback(feedback);
-
-      // // Calculate counts
-      // const activePackages = packages.filter(
-      //   (pack) => pack?.status === STATUS.Active
-      // );
-      // const inactivePackages = packages.filter(
-      //   (pack) => pack?.status !== STATUS.Active
-      // );
-
-      // setActivePackageCount(activePackages.length);
-      // setInactivePackageCount(inactivePackages.length);
     } catch (error) {
-      console.error("Error fetching all packages:", error);
+      console.error("Error fetching all feedbacks:", error);
     }
   };
+
   const fetchEmails = async () => {
     try {
       const response = await fetch(summaryApi.get_send_message.url);
       const dataResponse = await response.json();
-
       console.log("email data:", dataResponse);
-
-      const emails = dataResponse?.data;
+      const emails = dataResponse?.data || [];
       setAllEmail(emails);
-
-      // // Calculate counts
-      // const activePackages = packages.filter(
-      //   (pack) => pack?.status === STATUS.Active
-      // );
-      // const inactivePackages = packages.filter(
-      //   (pack) => pack?.status !== STATUS.Active
-      // );
-
-      // setActivePackageCount(activePackages.length);
-      // setInactivePackageCount(inactivePackages.length);
     } catch (error) {
-      console.error("Error fetching all packages:", error);
+      console.error("Error fetching all emails:", error);
     }
   };
+
+  const fetchCollectReq = async () => {
+    try {
+      const response = await fetch(summaryApi.get_all_waste.url);
+      const dataResponse = await response.json();
+      console.log("Req data:", dataResponse);
+      const requests = dataResponse?.data || [];
+      setAllReq(requests);
+    } catch (error) {
+      console.error("Error fetching all collection requests:", error);
+    }
+  };
+
   useEffect(() => {
-    fetchUser();
-    fetchcollector();
+    const fetchAllData = async () => {
+      setIsLoading(true);
+      try {
+        // Use Promise.all to fetch all data concurrently
+        await Promise.all([
+          fetchUser(),
+          fetchCollector(),
+          fetchFeedback(),
+          fetchEmails(),
+          fetchCollectReq(),
+        ]);
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAllData();
   }, []);
 
   return (
     <div>
       {/* Card widget */}
-
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
-          title={"users"}
-          subtitle={allUser.length}
+          title={"Users"}
+          subtitle={isLoading ? "Loading..." : allUser.length}
         />
         <Widget
           icon={<IoDocuments className="h-6 w-6" />}
-          title={"Collector"}
-          subtitle={allCollector.length}
+          title={"Collectors"}
+          subtitle={isLoading ? "Loading..." : allCollector.length}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
-          title={"NO of Feedback"}
-          subtitle={allFeedback.length}
+          title={"No. of Feedback"}
+          subtitle={isLoading ? "Loading..." : allFeedback.length}
         />
         <Widget
           icon={<MdDashboard className="h-6 w-6" />}
           title={"Your Emails"}
-          subtitle={allEmail.length}
+          subtitle={isLoading ? "Loading..." : allEmail.length}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"New Tasks"}
-          subtitle={"145"}
+          subtitle={"30"}
         />
         <Widget
           icon={<IoMdHome className="h-6 w-6" />}
-          title={"Total Projects"}
-          subtitle={"$2433"}
+          title={"Collection Req"}
+          subtitle={isLoading ? "Loading..." : allReq.length}
         />
       </div>
 
       {/* Charts */}
-
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 ">
-        {/* <TotalSpent /> */}
         <PieChartCard />
         <DailyTraffic />
-        {/* <WeeklyRevenue /> */}
       </div>
 
       {/* Tables & Charts */}
-
-      {/* <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2"> */}
-      {/* Check Table */}
       <div className="mt-5">
         <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
       </div>
 
-      {/* Traffic chart & Pie Chart */}
-
-      {/* <div className="mt-5 grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-        <DailyTraffic />
-      </div> */}
-
-      {/* Complex Table , Task & Calendar */}
-
-      {/* <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        /> */}
-
       {/* Task chart & Calendar */}
-
       <div className="mt-5 grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
         <TaskCard />
         <div className="grid grid-cols-1 rounded-[20px]">
           <MiniCalendar />
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };
