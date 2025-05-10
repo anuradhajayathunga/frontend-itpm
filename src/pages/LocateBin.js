@@ -247,7 +247,7 @@ const LocateBin = () => {
                   <form className="flex-1" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
                       {user?._id && (
-                        <VoiceInputField
+                        <input
                           className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px] capitalize"
                           type="text"
                           name="fname"
@@ -258,7 +258,7 @@ const LocateBin = () => {
                         />
                       )}
 
-                      <input
+                      <VoiceInputField
                         className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px] capitalize"
                         type="text"
                         name="lname"
@@ -279,7 +279,7 @@ const LocateBin = () => {
                           readOnly
                         />
                       )}
-                      <input
+                      <VoiceInputField
                         className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
                         type="tel"
                         name="phone"
@@ -292,7 +292,7 @@ const LocateBin = () => {
                       />
                     </div>
                     <div className="flex flex-col gap-6 mb-6 lg:flex-row xl:gap-[30px]">
-                      <input
+                      <VoiceInputField
                         className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
                         type="text"
                         name="address"
@@ -300,7 +300,7 @@ const LocateBin = () => {
                         onChange={handleOneChange}
                         placeholder="Your address"
                       />
-                      <input
+                      <VoiceInputField
                         className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
                         type="text"
                         name="city"
@@ -316,7 +316,7 @@ const LocateBin = () => {
                         name="date"
                         value={data?.date}
                         onChange={handleOneChange}
-                        placeholder="Your address"
+                        placeholder="Date"
                       />
                       <input
                         className="outline-none flex-1 placeholder:text-gray-400 placeholder:text-md placeholder:font-chivo py-5 px-[30px]"
@@ -324,7 +324,7 @@ const LocateBin = () => {
                         name="time"
                         value={data?.time}
                         onChange={handleOneChange}
-                        placeholder="Your Main City"
+                        placeholder="Time"
                       />
                     </div>
                     <div className="mb-6">
