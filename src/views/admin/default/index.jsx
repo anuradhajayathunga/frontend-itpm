@@ -21,8 +21,7 @@ const Dashboard = () => {
   const [allUser, setAllUser] = useState([]);
   const [allCollector, setAllCollector] = useState([]);
   const [allFeedback, setAllFeedback] = useState([]);
-    const [allEmail, setAllEmail] = useState([]);
-
+  const [allEmail, setAllEmail] = useState([]);
 
   const fetchUser = async () => {
     try {

@@ -43,8 +43,8 @@ const VoiceInputField = ({ name, placeholder, value, onChange }) => {
         type="button"
         onClick={startListening}
         className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded ${
-          isListening ? 'text-red-500' : 'text-green-500'
-        } hover:text-green-600 transition-colors`}
+          isListening ? 'text-blue-500' : 'text-green-300'
+        } hover:text-green-500 transition-colors`}
         title="Click to speak"
       >
         <svg
